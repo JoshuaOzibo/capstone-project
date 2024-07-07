@@ -12,7 +12,7 @@ const HeroSection = () => {
       </div>
       <img
         src={HeroImg}
-        className="md:w-full md:h-[600px] h-[70vh] object-cover"
+        className="md:w-full md:h-[600px] sm:h-[70vh] h-[60vh] object-cover"
         alt="HeroImg"
         srcset=""
       />
