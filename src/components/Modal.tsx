@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
-  DialogTitle,
 } from "@headlessui/react";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";

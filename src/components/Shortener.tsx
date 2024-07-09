@@ -32,6 +32,8 @@ const Shortener = () => {
         shortenUrlApi
       );
 
+      console.log(result)
+
       try {
         if (result.shortUrl) {
           setShortUrl(result.shortUrl);
