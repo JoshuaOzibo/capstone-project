@@ -1,11 +1,13 @@
-// import QrCodePage from "./components/QRcode.js";
-// import Home from "./components/Home.js";
 import HeroSection from "./components/HeroSection.jsx";
+import SectionOne from "./components/sections/Sections.js";
+import UserDashboard from "./components/UserDashboard.js";
 const App = () => {
   return (
     <div>
-      <HeroSection />
-      {/* <QrCodePage /> */}
+      {/* <HeroSection />
+      <SectionOne /> */}
+
+      <UserDashboard />
     </div>
   );
 };

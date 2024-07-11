@@ -4,3 +4,9 @@ export type stateSetsTypes ={
     setOpen?: React.Dispatch<React.SetStateAction<boolean>>,
     open?: boolean
 };
+
+export type userDashboard ={
+    Clicks: number,
+    LongUrl: string,
+    ShortUrl: string
+}

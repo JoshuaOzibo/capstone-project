@@ -11,7 +11,6 @@ const Shortener = () => {
   const [longUrl, setLongUrl] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [open, setOpen] = useState(false);
-  const [clicks, setClicks] = useState(0);
 
   const token: string = import.meta.env.VITE_Token;
   const groupGuid: string = import.meta.env.VITE_Group_Id;
@@ -63,7 +62,6 @@ const Shortener = () => {
   };
 
   const clickUrl = async () => {
-    setClicks(clicks + 1);
 
     if (auth.currentUser && shortUrl) {
       const userId = auth.currentUser.uid;
