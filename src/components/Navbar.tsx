@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import SignOut from "./auth/SignOut";
-import { auth } from "../firebaseConfig";
+import { auth } from "./ClientDatabase";
 
 const Navbar = () => {
     const [isLogin, setIsLogin] = useState<boolean>(false);

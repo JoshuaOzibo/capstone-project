@@ -4,10 +4,10 @@ import UserDashboard from "./components/UserDashboard.js";
 const App = () => {
   return (
     <div>
-      {/* <HeroSection />
-      <SectionOne /> */}
+      <HeroSection />
+      {/* <SectionOne /> */}
 
-      <UserDashboard />
+      {/* <UserDashboard /> */}
     </div>
   );
 };

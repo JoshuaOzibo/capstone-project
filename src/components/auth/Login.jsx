@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { auth } from "../../firebaseConfig";
+import { useState } from "react";
+import { auth } from "../ClientDatabase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 

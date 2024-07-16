@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../firebaseConfig';
+import { auth, db } from './ClientDatabase';
 import { doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import UserDashboardUi from './UserDashboardUi';
@@ -13,9 +13,9 @@ interface UrlData {
 const UserDashboard = () => {
     const [userData, setUserData] = useState<UrlData[]>([])
     const [loading, setLoading] = useState(true);
-    const [str, setStr] = useState('');
-    const [random, setRandom] = useState('')
-    const [randomTwo, setRandomTwo] = useState('')
+    // const [str, setStr] = useState('');
+    // const [random, setRandom] = useState('')
+    // const [randomTwo, setRandomTwo] = useState('')
 
     useEffect(() => {
       const fetchUserData = async() => {
@@ -58,22 +58,22 @@ const UserDashboard = () => {
 
     console.log(userData);
 
-    const clickRandom =() => {
-      const numbers = [7, 8, 9];
+    // const clickRandom =() => {
+    //   const numbers = [7, 8, 9];
 
-      const number = Math.floor(10000000 + Math.random() * 90000000);
-      setRandom(number);
-      const randomIndex = Math.floor(Math.random() * numbers.length);
-      setRandomTwo(numbers[randomIndex])
-    }
+    //   const number = Math.floor(10000000 + Math.random() * 90000000);
+    //   setRandom(number);
+    //   const randomIndex = Math.floor(Math.random() * numbers.length);
+    //   setRandomTwo(numbers[randomIndex])
+    // }
 
 
   return (// {randomTwo && <p>+{randomTwo}</p>} {random && <p>0</p>} {random && <p>{random}</p>}
     <section>
-      <span>
+      {/* <span>
       {`+234 ${randomTwo}0${random}`} <br />
       </span>
-      <button onClick={clickRandom}>click</button>
+      <button onClick={clickRandom}>click</button> */}
       <h2 className='text-center mt-12 font-bold text-2xl'>User Analytics</h2>
       <div className='w-full flex justify-center h-[100vh]'>
       <div className={userData.length === 0 ? "md:w-[60%] w-full h-[600px] mt-5" : "md:w-[60%] w-full h-[600px] mt-5 overflow-y-scroll"}>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { auth } from "../../firebaseConfig"; // Adjust the import path as needed
+import { auth } from "../ClientDatabase";
 import { signOut } from "firebase/auth";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 
