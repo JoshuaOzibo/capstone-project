@@ -4,12 +4,12 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import SignOut from "./auth/SignOut";
 import { auth } from "./ClientDatabase";
 
-const Navbar = () => {
+const Navbar = ({setOpen, open}) => {
     const [isLogin, setIsLogin] = useState<boolean>(false);
-    if(auth.currentUser){
-        // setIsLogin(true);
-    }
     
+    const handleRegister=() => {
+      
+    }
   return (
     <div className="z-10 w-full fixed m-auto backdrop-blur-sm bg-white/50 py-[1rem] sm:px-[2rem] px-[1rem]">
       <div className="flex font-bold items-center justify-between">
@@ -22,7 +22,7 @@ const Navbar = () => {
         </ul>
 
         <div className=" cursor-pointer">
-            {<p>Register</p>}
+            {<p onClick={handleRegister}>Register</p>}
           {<Menu as="div" className="relative inline-block text-left">
             <div>
               <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
@@ -46,7 +46,7 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem>
                   <a className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
-                    <SignOut />
+                    <SignOut setIsLogin={setIsLogin} />
                   </a>
                 </MenuItem>
               </div>

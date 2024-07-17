@@ -3,7 +3,9 @@ import { auth } from "../ClientDatabase";
 import { signOut } from "firebase/auth";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 
-const SignOut = () => {
+const SignOut = ({setIsLogin}: React.Dispatch<React.SetStateAction<boolean>> | boolean) => {
+
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);

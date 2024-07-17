@@ -1,46 +1,49 @@
 import { useState } from "react";
 import { auth } from "./ClientDatabase.ts";
 import Modal from "./Modal.tsx";
+import GenerateModal from "./GenerateModal.tsx";
 
-
-const Shortener = () => {
+const Shortener = ({ open, setOpen }) => {
   const [shortUrl, setShortUrl] = useState<string | null>("");
-  const [originalUrl, setOriginalUrl] = useState<string >("");
+  const [originalUrl, setOriginalUrl] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [open, setOpen] = useState(false);
+  const [showResultModal, setShowResultModal] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if(auth.currentUser){
+
+    if (auth.currentUser) {
       try {
         const idToken = await auth.currentUser.getIdToken();
         const response = await fetch("http://127.0.0.1:8000/shortenurl", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-           "x-user-id": idToken,
+            "x-user-id": idToken,
           },
           body: JSON.stringify({ originalUrl }),
         });
-  
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-  
+
         const result = await response.json();
         setShortUrl(result.shortUrl);
         console.log("Success:", result);
+        result && setShowResultModal(true);
       } catch (error) {
-        setError("Failed to shorten URL. Please try again later.")
+        setError("Failed to shorten URL. Please try again later.");
         console.error("Error:", error);
       }
-    }else{
-      setOpen(true)
+    } else {
+      setOpen(true);
     }
+
+    setShortUrl('')
   };
 
-  console.log(error)
+  console.log(error);
 
   return (
     <div>
@@ -64,11 +67,16 @@ const Shortener = () => {
           </button>
         </div>
       </form>
-      {shortUrl && (
-        <p className="py-3 bg-white text-center">
-          Shortened URL: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a>
+
+      {shortUrl && <GenerateModal setShowResultModal ={setShowResultModal}>
+        <p className="flex justify-end pr-5 py-2 text-2xl font-medium"><span onClick={() => setShowResultModal(false)} className=" cursor-pointer">X</span></p>
+        <p className=" bg-white m-auto w-full">
+          Shortened URL:
+          <a href={shortUrl} target="_blank" rel="noopener noreferrer">
+            {shortUrl}
+          </a>
         </p>
-      )}
+      </GenerateModal>}
     </div>
   );
 };
