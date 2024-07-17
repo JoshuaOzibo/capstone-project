@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { auth } from "./ClientDatabase.ts";
 import Modal from "./Modal.tsx";
-import GenerateModal from "./GenerateModal.tsx";
+import DisplayShortUrlResult from "../components/shortUrlResult/DisplayShortUrlResult.tsx";
 
 const Shortener = ({ open, setOpen }) => {
   const [shortUrl, setShortUrl] = useState<string | null>("");
   const [originalUrl, setOriginalUrl] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [showResultModal, setShowResultModal] = useState(false)
+  const [showResultModal, setShowResultModal] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const Shortener = ({ open, setOpen }) => {
         const result = await response.json();
         setShortUrl(result.shortUrl);
         console.log("Success:", result);
-        result && setShowResultModal(true);
+        setShowResultModal(true);
       } catch (error) {
         setError("Failed to shorten URL. Please try again later.");
         console.error("Error:", error);
@@ -40,7 +40,7 @@ const Shortener = ({ open, setOpen }) => {
       setOpen(true);
     }
 
-    setShortUrl('')
+    setOriginalUrl('');
   };
 
   console.log(error);
@@ -68,15 +68,12 @@ const Shortener = ({ open, setOpen }) => {
         </div>
       </form>
 
-      {shortUrl && <GenerateModal setShowResultModal ={setShowResultModal}>
-        <p className="flex justify-end pr-5 py-2 text-2xl font-medium"><span onClick={() => setShowResultModal(false)} className=" cursor-pointer">X</span></p>
-        <p className=" bg-white m-auto w-full">
-          Shortened URL:
-          <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-            {shortUrl}
-          </a>
-        </p>
-      </GenerateModal>}
+      {showResultModal && shortUrl && (
+        <DisplayShortUrlResult
+          shortUrl={shortUrl}
+          setShowResultModal={setShowResultModal}
+        />
+      )}
     </div>
   );
 };
