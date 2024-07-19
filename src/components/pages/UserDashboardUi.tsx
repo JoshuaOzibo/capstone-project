@@ -1,15 +1,21 @@
 import React from "react";
 import { userDashboard } from "../TypesExport";
 import { QrCode } from "lucide-react";
+import { TbCopy } from "react-icons/tb";
+import { MdOutlineFileDownload } from "react-icons/md";
+import { AiTwotoneDelete } from "react-icons/ai";
 
-const UserDashboardUi = ({ Clicks, LongUrl, ShortUrl }: userDashboard) => {
+const UserDashboardUi = ({ Clicks, ShortUrl, handleeachData }: userDashboard) => {
   return (
     <>
-      <div className="border flex items-center justify-between shadow-md py-4 px-3">
+      <div onClick={handleeachData} className="border text-balance break-words flex items-center justify-between shadow-md py-4 px-3">
         <h1 className="font-bold text-sm">{ShortUrl}</h1>
         <p>clicks: {Clicks}</p>
         <div>
-          <p>kjhgfd</p>
+          <p className="flex items-center space-x-10 pl-1 mb-2">
+            <span><TbCopy /></span>
+            <span><AiTwotoneDelete /></span>
+          </p>
         <p className="">23/02/2024</p>
         </div>
       </div>

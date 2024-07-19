@@ -16,7 +16,7 @@ const DisplayShortUrlResult = ({
         <p className="flex justify-end pr-5 py-2 text-2xl font-medium">
           <span
             onClick={() => setShowResultModal(false)}
-            className="cursor-pointer "
+            className="cursor-pointer"
           >
             X
           </span>

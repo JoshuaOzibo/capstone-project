@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Details from './components/pages/Details.tsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/analytics",
     element: <UserDashboard />,
+  },
+  {
+    path: "/details/:urlCode", // Add this route
+    element: <Details />
   },
 ]);
 
