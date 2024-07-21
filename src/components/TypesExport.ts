@@ -9,4 +9,6 @@ export type userDashboard ={
     Clicks: number,
     LongUrl: string,
     ShortUrl: string
+    handleeachData: () => void,
+    date: string,
 }

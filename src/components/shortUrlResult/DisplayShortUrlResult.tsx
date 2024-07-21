@@ -22,10 +22,9 @@ const DisplayShortUrlResult = ({
           </span>
         </p>
         <p className="bg-white text-center md:text-xl text-lg font-bold m-auto w-full">
-          http://127.0.0.1:8000/I78Gv1eeM
-          {/* <a href={shortUrl} target="_blank" rel="noopener noreferrer">
+          <a href={shortUrl} target="_blank" rel="noopener noreferrer">
             {shortUrl}
-          </a> */}
+          </a>
         </p>
 
         <QRcode shortUrl={shortUrl} />

@@ -2,18 +2,21 @@ import { useState } from "react";
 import { auth } from "./ClientDatabase.ts";
 import Modal from "./Modal.tsx";
 import DisplayShortUrlResult from "../components/shortUrlResult/DisplayShortUrlResult.tsx";
+import { FadeLoader } from "react-spinners";
 
 const Shortener = ({ open, setOpen }) => {
   const [shortUrl, setShortUrl] = useState<string | null>("");
   const [originalUrl, setOriginalUrl] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [showResultModal, setShowResultModal] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (auth.currentUser) {
       try {
+        setIsLoading(true);
         const idToken = await auth.currentUser.getIdToken();
         const response = await fetch("http://127.0.0.1:8000/shortenurl", {
           method: "POST",
@@ -29,6 +32,7 @@ const Shortener = ({ open, setOpen }) => {
         }
 
         const result = await response.json();
+        setIsLoading(false);
         setShortUrl(result.shortUrl);
         console.log("Success:", result);
         setShowResultModal(true);
@@ -40,7 +44,7 @@ const Shortener = ({ open, setOpen }) => {
       setOpen(true);
     }
 
-    setOriginalUrl('');
+    setOriginalUrl("");
   };
 
   console.log(error);
@@ -60,10 +64,22 @@ const Shortener = ({ open, setOpen }) => {
           />
           <br className="md:hidden" />
           <button
-            className="md:w-[20%] lg:w-[15%] md:h-[50px] md:mt-0 mt-[20px] md:rounded-r-sm rounded-sm w-[70%] h-[40px] font-bold bg-blue-500"
+            className="md:w-[20%] md:m-0 m-auto flex justify-center relative lg:w-[15%] md:h-[50px] md:mt-0 mt-[20px] md:rounded-r-sm rounded-sm w-[70%] h-[50px] font-bold bg-blue-500"
             type="submit"
           >
-            Shorten URL
+            {isLoading ? (
+              <p className=" absolute m-auto">
+                <FadeLoader
+                  height={8}
+                  margin={1}
+                  radius={10}
+                  speedMultiplier={3}
+                  width={4}
+                />
+              </p>
+            ) : (
+              <p className="mt-3">Shorten URL</p>
+            )}
           </button>
         </div>
       </form>
