@@ -11,4 +11,6 @@ export type userDashboard ={
     ShortUrl: string
     handleeachData: () => void,
     date: string,
+    urlCode: string,
+    onDelete: () => void,
 }

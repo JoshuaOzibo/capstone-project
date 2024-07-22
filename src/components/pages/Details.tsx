@@ -5,12 +5,12 @@ import { TbCopy } from "react-icons/tb";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { AiTwotoneDelete } from "react-icons/ai";
 import PiChart from "../PiChart";
-import { Navigation } from "lucide-react";
 
 interface datatypeItem {
   originalUrl: string;
   shortUrl: string;
   clicks: number;
+  date:string
 }
 
 const Details = () => {
@@ -66,7 +66,7 @@ const Details = () => {
             <a className="font-bold md:text-xl" href={data.shortUrl}>
               {data.shortUrl}
             </a>
-            <p>21/05/2024</p>
+            <p>{data.date}</p>
               <span className="flex space-x-40 pl-2 mb-5">
                 <TbCopy size={20} />
                 <MdOutlineFileDownload size={20} />

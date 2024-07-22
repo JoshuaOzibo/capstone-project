@@ -19,7 +19,7 @@ const UserDashboard = () => {
   const [userData, setUserData] = useState<UrlData[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  console.log(userData)
+  console.log(userData);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -61,7 +61,10 @@ const UserDashboard = () => {
     navigate(`/details/${urlCode}`);
   };
 
-  // const renderItemsConditionally =
+  const handleDelete = (urlCode: string) => {
+    // Remove item from state
+    setUserData(userData.filter((item) => item.urlCode !== urlCode));
+  };
 
   if (loading) {
     return <DashboardSkeleton />;
@@ -72,8 +75,8 @@ const UserDashboard = () => {
       </p>
     );
   } else {
-    return(
-      <section >
+    return (
+      <section>
         <h2 className="text-center mt-12 font-bold text-2xl">User Analytics</h2>
         <div className="grid grid-cols-2 gap-5 mx-5">
           <div className="px-5 shadow-md md:h-[200px] h-[150px] mt-5">
@@ -90,67 +93,22 @@ const UserDashboard = () => {
           </div>
         </div>
         <div className="w-full mt-5 flex justify-center h-[100vh]">
-          <div
-            className="md:w-[100%] mx-5 w-full h-[55vh] mt-5 overflow-y-scroll"
->
+          <div className="md:w-[100%] mx-5 w-full h-[55vh] mt-5 overflow-y-scroll">
             {userData.map((url, index) => (
               <UserDashboardUi
                 date={url.date}
                 Clicks={url.clicks}
                 LongUrl={url.originalUrl}
                 ShortUrl={url.shortUrl}
+                urlCode={url.urlCode}
                 handleeachData={() => handleItemClick(url.urlCode)}
+                onDelete={() => handleDelete(url.urlCode)}
               />
             ))}
           </div>
         </div>
       </section>
-    )
+    );
   }
 };
 export default UserDashboard;
-
-/**
- * <section>
-      <h2 className="text-center mt-12 font-bold text-2xl">User Analytics</h2>
-      <div className="grid grid-cols-2 gap-5 mx-5">
-        <div className="px-5 shadow-md md:h-[200px] h-[150px] mt-5">
-          <p className="md:text-2xl md:font-black font-bold">Total Clicks:</p>
-          <p className=" mt-[30px] md:text-5xl text-center text-3xl md:font-black font-bold items-center">
-            {sumClicks}
-          </p>
-        </div>
-        <div className="px-5  shadow-md md:h-[200px] h-[150px] mt-5">
-          <p className="md:text-2xl md:font-black font-bold">Activities:</p>
-          <p className=" mt-[30px] md:text-5xl text-3xl md:font-black font-bold items-center text-center">
-            {userData.length}
-          </p>
-        </div>
-      </div>
-      <div className="w-full flex justify-center h-[100vh]">
-        <div
-          className={
-            userData.length === 0
-              ? "md:w-[60%] w-full h-[600px] mt-5"
-              : "md:w-[100%] mx-5 w-full h-[600px] mt-5 overflow-y-scroll"
-          }
-        >
-          {loading ? (
-            <div className="md:w-[60%] w-full h-[600px] mt-5">Loading...</div>
-          ) : userData.length === 0 ? (
-            <p>No URLs found.</p>
-          ) : (
-            userData.map((url, index) => (
-              <UserDashboardUi
-                date={url.date}
-                Clicks={url.clicks}
-                LongUrl={url.originalUrl}
-                ShortUrl={url.shortUrl}
-                handleeachData={() => handleItemClick(url.urlCode)}
-              />
-            ))
-          )}
-        </div>
-      </div>
-    </section>
- */

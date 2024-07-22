@@ -3,11 +3,11 @@ import { auth } from "./ClientDatabase.ts";
 import Modal from "./Modal.tsx";
 import DisplayShortUrlResult from "../components/shortUrlResult/DisplayShortUrlResult.tsx";
 import { FadeLoader } from "react-spinners";
+import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
 
 const Shortener = ({ open, setOpen }) => {
   const [shortUrl, setShortUrl] = useState<string | null>("");
   const [originalUrl, setOriginalUrl] = useState<string>("");
-  const [error, setError] = useState<string>("");
   const [showResultModal, setShowResultModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -34,11 +34,12 @@ const Shortener = ({ open, setOpen }) => {
         const result = await response.json();
         setIsLoading(false);
         setShortUrl(result.shortUrl);
-        console.log("Success:", result);
         setShowResultModal(true);
+        showToast("url shoten syccessfully", "success");
       } catch (error) {
-        setError("Failed to shorten URL. Please try again later.");
-        console.error("Error:", error);
+        showToast("Failed to shorten URL. Please try again later.", "error");
+        setIsLoading(false);
+        return;
       }
     } else {
       setOpen(true);
@@ -47,10 +48,9 @@ const Shortener = ({ open, setOpen }) => {
     setOriginalUrl("");
   };
 
-  console.log(error);
-
   return (
     <div>
+      <ToastMessage />
       {open && <Modal setOpen={setOpen} open={open} />}
       <form onSubmit={handleSubmit}>
         <div className="md:flex items-center justify-center block">
