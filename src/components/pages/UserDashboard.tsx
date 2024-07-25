@@ -70,9 +70,12 @@ const UserDashboard = () => {
     return <DashboardSkeleton />;
   } else if (userData.length === 0) {
     return (
+      <>
+      <button onClick={() => navigate('/')} className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2">Back Home</button>
       <p className="font-medium md:text-3xl text-2xl text-center mt-[300px]">
         No URLs found.
       </p>
+      </>
     );
   } else {
     return (
