@@ -5,6 +5,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import UserDashboardUi from "./UserDashboardUi";
 import { useNavigate } from "react-router-dom";
 import DashboardSkeleton from "../skeletonLoading/DashboardSkeleton";
+import CustomisUrl from "../CustomisUrl";
+import Modal from '../resuableModal';
 
 interface UrlData {
   originalUrl: string;
@@ -19,7 +21,9 @@ const UserDashboard = () => {
   const [userData, setUserData] = useState<UrlData[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  console.log(userData);
+  const [originalCustomiseValue, setOriginalCustomiseValue] = useState<string>('');
+  const [customisableLongUrl, setCustomisableLongUrl] = useState<string>('');
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -80,6 +84,9 @@ const UserDashboard = () => {
   } else {
     return (
       <section>
+        {showModal && <Modal>
+        <CustomisUrl  setShowModal={setShowModal} originalCode={originalCustomiseValue} currentShortUrl={customisableLongUrl} />
+        </Modal>}
         <h2 className="text-center mt-12 font-bold text-2xl">User Analytics</h2>
         <div className="grid grid-cols-2 gap-5 mx-5">
           <div className="px-5 shadow-md md:h-[200px] h-[150px] mt-5">
@@ -104,6 +111,9 @@ const UserDashboard = () => {
                 LongUrl={url.originalUrl}
                 ShortUrl={url.shortUrl}
                 urlCode={url.urlCode}
+                setOriginalCustomiseValue={setOriginalCustomiseValue}
+                setCustomisableLongUrl={setCustomisableLongUrl}
+                setShowModal={setShowModal}
                 handleeachData={() => handleItemClick(url.urlCode)}
                 onDelete={() => handleDelete(url.urlCode)}
               />

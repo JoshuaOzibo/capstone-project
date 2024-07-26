@@ -1,5 +1,5 @@
 import React from "react";
-import GenerateModal from "./GenerateModal";
+import GenerateModal from "../resuableModal";
 import QRcode from "./QRcode";
 
 interface DisplayShortUrlResultProps {
