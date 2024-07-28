@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../ClientDatabase";
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  onSnapshot,
+  QuerySnapshot,
+} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import UserDashboardUi from "./UserDashboardUi";
 import { useNavigate } from "react-router-dom";
 import DashboardSkeleton from "../skeletonLoading/DashboardSkeleton";
 import CustomisUrl from "../CustomisUrl";
-import Modal from '../resuableModal';
-
-interface UrlData {
-  originalUrl: string;
-  shortUrl: string;
-  clicks: number;
-  urlCode: string;
-  date: string;
-  handleeachData?: () => void;
-}
+import Modal from "../resuableModal";
+import { parentUserDashboardUrlType, CustomizeUrlTypes } from "../TypesExport";
 
 const UserDashboard = () => {
-  const [userData, setUserData] = useState<UrlData[]>([]);
+  const [userData, setUserData] = useState<parentUserDashboardUrlType[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [originalCustomiseValue, setOriginalCustomiseValue] = useState<string>('');
-  const [customisableLongUrl, setCustomisableLongUrl] = useState<string>('');
-  const [showModal, setShowModal] = useState(false)
+  const [originalCustomiseValue, setOriginalCustomiseValue] =
+    useState<string>("");
+  const [customisableLongUrl, setCustomisableLongUrl] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -32,11 +33,16 @@ const UserDashboard = () => {
         const userUrlsRef = collection(db, "users", userId, "ownerData");
 
         try {
-          const querrySnapshot = await getDocs(userUrlsRef);
-          const data = querrySnapshot.docs.map((doc) => doc.data() as UrlData);
-          setUserData(data);
+          onSnapshot(userUrlsRef, (querySnapshot) => {
+            const data = querySnapshot.docs.map(
+              (doc) => doc.data() as parentUserDashboardUrlType
+            );
+            setUserData(data);
+            setLoading(false);
+            setError(null);
+          });
         } catch (error) {
-          console.error("Error fetching user data:", error);
+          setError("Error fetching user data:", error);
         } finally {
           setLoading(false);
         }
@@ -72,21 +78,47 @@ const UserDashboard = () => {
 
   if (loading) {
     return <DashboardSkeleton />;
-  } else if (userData.length === 0) {
+  }
+
+  if (error) {
+    return (
+      <div className="text-center mt-10">
+        <p className="text-red-500 font-medium">{error}</p>
+        <button
+          onClick={() => navigate("/")}
+          className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
+        >
+          Back Home
+        </button>
+      </div>
+    );
+  }
+  if (userData.length === 0) {
     return (
       <>
-      <button onClick={() => navigate('/')} className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2">Back Home</button>
-      <p className="font-medium md:text-3xl text-2xl text-center mt-[300px]">
-        No URLs found.
-      </p>
+        <button
+          onClick={() => navigate("/")}
+          className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
+        >
+          Back Home
+        </button>
+        <p className="font-medium md:text-3xl text-2xl text-center mt-[300px]">
+          No URLs found.
+        </p>
       </>
     );
   } else {
     return (
       <section>
-        {showModal && <Modal>
-        <CustomisUrl  setShowModal={setShowModal} originalCode={originalCustomiseValue} currentShortUrl={customisableLongUrl} />
-        </Modal>}
+        {showModal && (
+          <Modal>
+            <CustomisUrl
+              setShowModal={setShowModal}
+              originalCode={originalCustomiseValue}
+              currentShortUrl={customisableLongUrl}
+            />
+          </Modal>
+        )}
         <h2 className="text-center mt-12 font-bold text-2xl">User Analytics</h2>
         <div className="grid grid-cols-2 gap-5 mx-5">
           <div className="px-5 shadow-md md:h-[200px] h-[150px] mt-5">

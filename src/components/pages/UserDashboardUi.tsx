@@ -4,8 +4,6 @@ import { TbCopy } from "react-icons/tb";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { auth } from "../ClientDatabase";
 import ToastMessage, { showToast } from "../toastMessage/ToastMessage";
-import CustomisUrl from "../CustomisUrl";
-
 
 const UserDashboardUi = ({
   Clicks,
@@ -16,9 +14,8 @@ const UserDashboardUi = ({
   onDelete,
   setCustomisableLongUrl,
   setOriginalCustomiseValue,
-  setShowModal
+  setShowModal,
 }: userDashboard) => {
-
   const handleDelete = async () => {
     const currentUser = auth.currentUser;
 
@@ -51,9 +48,9 @@ const UserDashboardUi = ({
   };
 
   const handleCustomiseUrl = () => {
-    setShowModal(true)
+    setShowModal(true);
     setCustomisableLongUrl(ShortUrl);
-    setOriginalCustomiseValue(urlCode)
+    setOriginalCustomiseValue(urlCode);
   };
   return (
     <>
@@ -64,7 +61,7 @@ const UserDashboardUi = ({
           className="w-full flex items-center h-[50px]"
         >
           <span className="md:w-[65%] w-[95%] flex justify-between">
-            <h1 className="font-bold text-sm">{ShortUrl}</h1>
+            <h1 className="font-bold text-sm">{ ShortUrl}</h1>
             <p className="hidden md:block">clicks: {Clicks}</p>
           </span>
         </div>

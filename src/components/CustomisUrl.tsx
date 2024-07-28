@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { auth } from "./ClientDatabase.ts";
-import ToastMessage, { showToast } from './toastMessage/ToastMessage.tsx'
-
-type urlType = {
-  originalCode: string;
-  currentShortUrl: string;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
+import { CustomizeUrlTypes } from "./TypesExport.ts";
+import { promises } from "dns";
 
 const CustomisUrl = ({
   originalCode,
   currentShortUrl,
-  setShowModal
-}: urlType) => {
+  setShowModal,
+}: CustomizeUrlTypes) => {
   const [newCode, setNewCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
@@ -40,26 +36,26 @@ const CustomisUrl = ({
         if (!response.ok) {
           const result = await response.json();
           throw new Error(result.error);
-        };
-        
+        }
         setLoading(false);
-        setShowModal(false)
-        showToast('URL updated successfully!', 'error')
-        
+        setShowModal(false);
+        // window.location.reload();
+        showToast("URL updated successfully!", "success");
       } catch (error) {
+        setLoading(false);
         setError(error.message);
-        showToast(`${error.message}`, 'error');
+        showToast(`${error.message}`, "error");
       }
     } else {
+      setLoading(false);
       setError("User not authenticated");
-      showToast('User not authenticated', 'error');
+      showToast("User not authenticated", "error");
     }
-
   };
   return (
     <>
       <ToastMessage />
-        <div>
+      <div>
         <form onSubmit={handleUpdate}>
           <div className="p-[20px]">
             <div>
@@ -80,8 +76,8 @@ const CustomisUrl = ({
             </button>
           </div>
         </form>
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+      </div>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </>
   );
 };
