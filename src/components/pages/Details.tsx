@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import { QRCode } from "react-qrcode-logo";
+import { QRCodeCanvas } from "qrcode.react";
 import { TbCopy } from "react-icons/tb";
 import { MdOutlineFileDownload } from "react-icons/md";
 import PiChart from "../PiChart";
+import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
 interface datatypeItem {
   originalUrl: string;
@@ -16,6 +17,9 @@ const Details = () => {
   const { urlCode } = useParams();
   const [data, setData] = useState<datatypeItem | null>(null);
   const [error, setError] = useState(null);
+  const qrRef = useRef<HTMLDivElement>(null);
+  const [showMarkGood, setShowMarkGood] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   console.log(urlCode);
 
@@ -40,7 +44,12 @@ const Details = () => {
   }, [urlCode]);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-center mt-[50vh]">
+      <p className="font-bold text-3xl mb-5">Error check your url or refresh</p>
+      <Link to="/analytics" className="border px-16 font-bold py-2 ">
+        {"<<Back"}
+      </Link>
+    </div>;
   }
 
   if (!data) {
@@ -52,12 +61,46 @@ const Details = () => {
     { name: "Total", value: 100 - data.clicks },
   ];
 
+  const handleDownload = () => {
+    const canvas = qrRef.current?.querySelector(
+      "canvas"
+    ) as HTMLCanvasElement | null;
+    if (canvas) {
+      const qrcodeUrl: string = canvas
+        .toDataURL()
+        .replace("image/png", "image/octet-stream");
+      let a = document.createElement("a");
+      a.href = qrcodeUrl;
+      a.download = "qrcode.png";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      console.log("Canvas element not found");
+    }
+  };
+
+  const handleCopy = (ShortUrl: string) => {
+    setShowMarkGood(true);
+
+    navigator.clipboard.writeText(ShortUrl).then(
+      () => {
+        console.log("copy successfully");
+        setTimeout(() => setShowMarkGood(false), 400);
+      },
+      (error) => {
+        console.log("failed to copy", error);
+        setShowMarkGood(false);
+      }
+    );
+  };
+
   return (
     <>
       <Link to="/analytics" className="border px-16 font-bold py-3 ">
         {"<<Back"}
       </Link>
-      <section>
+      <section className="px-5">
         <main className="w-full grid gap-5 my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5">
           <div className="border-2 p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Clicks</h3>
@@ -94,19 +137,35 @@ const Details = () => {
 
             <div className="w-full mt-10 flex justify-center">
               <div className="">
-              <span className="flex justify-center space-x-36">
-                <TbCopy size={20} />
-                <MdOutlineFileDownload size={20} />
-              </span>
-              <span className="lg:block md:hidden hidden">
-                <QRCode size={300} value={data.shortUrl} />
-              </span>
-              <span className="lg:hidden md:block hidden">
-                <QRCode size={260} value={data.shortUrl} />
-              </span>
-              <span className="lg:hidden md:hidden block">
-                <QRCode size={200} value={data.shortUrl} />
-              </span>
+                <span className="flex mb-5 justify-center space-x-36">
+                  {showMarkGood && (
+                    <IoCheckmarkCircleSharp
+                      size={20}
+                      className={showMarkGood ? "text-green-500 " : ""}
+                    />
+                  )}
+                  {!showMarkGood && (
+                    <TbCopy
+                      className="cursor-pointer"
+                      onClick={() => handleCopy(data.shortUrl)}
+                      size={20}
+                    />
+                  )}
+                  <MdOutlineFileDownload
+                    className="cursor-pointer"
+                    onClick={handleDownload}
+                    size={20}
+                  />
+                </span>
+                <span ref={qrRef} className="lg:block md:hidden hidden">
+                  <QRCodeCanvas id="canvas" size={300} value={data.shortUrl} />
+                </span>
+                <span ref={qrRef} className="lg:hidden md:block hidden">
+                  <QRCodeCanvas id="canvas" size={260} value={data.shortUrl} />
+                </span>
+                <span ref={qrRef} className="lg:hidden md:hidden block">
+                  <QRCodeCanvas id="canvas" size={200} value={data.shortUrl} />
+                </span>
               </div>
             </div>
           </div>

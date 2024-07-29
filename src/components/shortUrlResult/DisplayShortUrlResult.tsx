@@ -1,6 +1,6 @@
 import React from "react";
 import GenerateModal from "../resuableModal";
-import QRcode from "./QRcode";
+import QRcodeComponent from "./QRcode";
 
 interface DisplayShortUrlResultProps {
   shortUrl: string;
@@ -27,7 +27,7 @@ const DisplayShortUrlResult = ({
           </a>
         </p>
 
-        <QRcode shortUrl={shortUrl} />
+        <QRcodeComponent shortUrl={shortUrl} />
       </div>
     </GenerateModal>
   );
