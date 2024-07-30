@@ -5,6 +5,7 @@ import { TbCopy } from "react-icons/tb";
 import { MdOutlineFileDownload } from "react-icons/md";
 import PiChart from "../PiChart";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
+import DetailsPageSkeleton from '../skeletonLoading/DetailsPageSkeleton'
 
 interface datatypeItem {
   originalUrl: string;
@@ -45,7 +46,7 @@ const Details = () => {
 
   if (error) {
     return <div className="text-center mt-[50vh]">
-      <p className="font-bold text-3xl mb-5">Error check your url or refresh</p>
+      <p className="font-bold text-3xl mb-5">Error check your url or refresh the page</p>
       <Link to="/analytics" className="border px-16 font-bold py-2 ">
         {"<<Back"}
       </Link>
@@ -53,7 +54,7 @@ const Details = () => {
   }
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <DetailsPageSkeleton />;
   }
 
   const pieData01 = [

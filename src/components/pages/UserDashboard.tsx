@@ -110,6 +110,12 @@ const UserDashboard = () => {
   } else {
     return (
       <section>
+        <button
+          onClick={() => navigate("/")}
+          className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
+        >
+          Back Home
+        </button>
         {showModal && (
           <Modal>
             <CustomisUrl
