@@ -1,16 +1,17 @@
 import React from "react";
 import Img from "../../assets/pexels-asadphoto-457882.jpg";
+import '../Styles.css'
 
 const SectionOne = () => {
   return (
     <>
       <section className="">
         <div className="w-full py-[40px] text-center px-[2rem]">
-          <div className="lg:w-[50%] md:w-[80%] w-full m-auto">
-            <p className="text-2xl font-bold">
+          <div className="lg:w-[75%] md:w-[90%] w-full m-auto">
+            <h1 className="text-3xl blue_gradient font-bold text-center tracking-tighter md:text-4xl lg:text-5xl">
               Transform long, complicated URLs into short, easy-to-share links
               with just one click.
-            </p>
+            </h1>
           </div>
         </div>
       </section>

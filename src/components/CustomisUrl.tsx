@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { auth } from "./ClientDatabase.ts";
 import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
 import { CustomizeUrlTypes } from "./TypesExport.ts";
-import { promises } from "dns";
 
 const CustomisUrl = ({
   originalCode,
@@ -39,12 +38,12 @@ const CustomisUrl = ({
         }
         setLoading(false);
         setShowModal(false);
-        // window.location.reload();
+
         showToast("URL updated successfully!", "success");
       } catch (error) {
         setLoading(false);
         setError(error.message);
-        showToast(`${error.message}`, "error");
+        showToast(`cannot update Url`, "error");
       }
     } else {
       setLoading(false);
@@ -58,8 +57,11 @@ const CustomisUrl = ({
       <div>
         <form onSubmit={handleUpdate}>
           <div className="p-[20px]">
+            <div onClick={() => setShowModal(false)} className=" cursor-pointer flex justify-end">
+              <p className="text-2xl border-2 px-3 rounded-md">X</p>
+            </div>
             <div>
-              <label>Current Short URL: {currentShortUrl}</label>
+              <label>{currentShortUrl}</label>
             </div>
             <div>
               <input
@@ -72,12 +74,11 @@ const CustomisUrl = ({
               />
             </div>
             <button className="border-2 font-bold rounded-md mt-3 px-2 py-2">
-              {loading ? <p>Loading...</p> : <p>Update URL</p>}
+              {loading ? <p>Updating...</p> : <p>Update URL</p>}
             </button>
           </div>
         </form>
       </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}
     </>
   );
 };

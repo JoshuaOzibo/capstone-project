@@ -4,6 +4,7 @@ import Modal from "./Modal.tsx";
 import DisplayShortUrlResult from "../components/shortUrlResult/DisplayShortUrlResult.tsx";
 import { FadeLoader } from "react-spinners";
 import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
+import './Styles.css'
 
 const Shortener = ({ open, setOpen }) => {
   const [shortUrl, setShortUrl] = useState<string | null>("");
@@ -64,7 +65,7 @@ const Shortener = ({ open, setOpen }) => {
           />
           <br className="md:hidden" />
           <button
-            className="md:w-[20%] md:m-0 m-auto flex justify-center relative lg:w-[15%] md:h-[50px] md:mt-0 mt-[20px] md:rounded-r-sm rounded-sm w-[70%] h-[50px] font-bold bg-blue-500"
+            className="md:w-[20%] md:m-0 m-auto flex justify-center relative lg:w-[15%] md:h-[50px] md:mt-0 mt-[20px] md:rounded-r-sm rounded-sm w-[70%] h-[50px] font-bold gradient_background"
             type="submit"
           >
             {isLoading ? (
