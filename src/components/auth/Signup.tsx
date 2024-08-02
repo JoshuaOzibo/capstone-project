@@ -4,6 +4,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
 import {stateSetsTypes} from '../TypesExport';
+import ToastMessage, { showToast } from "../toastMessage/ToastMessage.tsx";
+
 
 const Signup = ({ setIsTrue }: stateSetsTypes) => {
   const [email, setEmail] = useState<string>("");
@@ -27,13 +29,15 @@ const Signup = ({ setIsTrue }: stateSetsTypes) => {
         name: { name },
       });
       setIsTrue(false);
-      console.log("User signed up and data added to Firestore:", user);
+      showToast("User signed up scuuessful", 'success');
     } catch (error: any) {
-      console.error("Error signing up:", error.message);
+      showToast("User signed up scuuessful", 'error');
+
     }
   };
   return (
     <div>
+      <ToastMessage />
       <form onSubmit={handleSignUp}>
         <div>
           <span className="flex gap-5">

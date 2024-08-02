@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 import DashboardSkeleton from "../skeletonLoading/DashboardSkeleton";
 import CustomisUrl from "../CustomisUrl";
 import Modal from "../resuableModal";
-import { parentUserDashboardUrlType, CustomizeUrlTypes } from "../TypesExport";
+import { parentUserDashboardUrlType } from "../TypesExport";
+import '../Styles.css';
 
 const UserDashboard = () => {
   const [userData, setUserData] = useState<parentUserDashboardUrlType[]>([]);
@@ -42,7 +43,8 @@ const UserDashboard = () => {
             setError(null);
           });
         } catch (error) {
-          setError("Error fetching user data:", error);
+          setError("Error fetching user data:");
+          
         } finally {
           setLoading(false);
         }
@@ -86,7 +88,7 @@ const UserDashboard = () => {
         <p className="text-red-500 font-medium">{error}</p>
         <button
           onClick={() => navigate("/")}
-          className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
+          className="cursor-pointer cards_colors_box border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
         >
           Back Home
         </button>
@@ -98,7 +100,7 @@ const UserDashboard = () => {
       <>
         <button
           onClick={() => navigate("/")}
-          className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
+          className="cursor-pointer cards_colors_box border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
         >
           Back Home
         </button>
@@ -112,7 +114,7 @@ const UserDashboard = () => {
       <section>
         <button
           onClick={() => navigate("/")}
-          className="cursor-pointer border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
+          className="cursor-pointer text-white font-medium cards_colors_box border border-2xl p-1 px-2 rounded-sm mt-2 ml-2"
         >
           Back Home
         </button>
@@ -125,15 +127,15 @@ const UserDashboard = () => {
             />
           </Modal>
         )}
-        <h2 className="text-center mt-12 font-bold text-2xl">User Analytics</h2>
+        <h2 className="text-center mt-12 font-bold text-2xl blue_gradient md:text-4xl">User Dashboard</h2>
         <div className="grid grid-cols-2 gap-5 mx-5">
-          <div className="px-5 shadow-md md:h-[200px] h-[150px] mt-5">
+          <div className="px-5 text-white rounded-md cards_colors_box md:h-[200px] h-[150px] mt-5">
             <p className="md:text-2xl md:font-black font-bold">Total Clicks:</p>
             <p className=" mt-[30px] md:text-5xl text-center text-3xl md:font-black font-bold items-center">
               {sumClicks}
             </p>
           </div>
-          <div className="px-5 shadow-md md:h-[200px] h-[150px] mt-5">
+          <div className="px-5 cards_colors_box text-white rounded-md md:h-[200px] h-[150px] mt-5">
             <p className="md:text-2xl md:font-black font-bold">Activities:</p>
             <p className=" mt-[30px] md:text-5xl text-3xl md:font-black font-bold items-center text-center">
               {userData.length}

@@ -5,6 +5,7 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import { auth } from "../ClientDatabase";
 import ToastMessage, { showToast } from "../toastMessage/ToastMessage";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
+import "../Styles.css";
 
 const UserDashboardUi = ({
   Clicks,
@@ -40,10 +41,10 @@ const UserDashboardUi = ({
       );
 
       if (response.ok) {
-        console.log("delete successful");
+        showToast("successful deleted", "success");
         onDelete();
       } else {
-        console.log("error");
+        showToast("delete error", "error");
       }
     } catch (error) {
       console.log(error);
@@ -51,48 +52,50 @@ const UserDashboardUi = ({
   };
 
   const handleCustomiseUrl = () => {
-    
     setShowModal(true);
     setCustomisableLongUrl(ShortUrl);
     setOriginalCustomiseValue(urlCode);
   };
 
   const handleCopy = (ShortUrl: string) => {
-    setShowMarkGood(true)
-    
+    setShowMarkGood(true);
+
     navigator.clipboard.writeText(ShortUrl).then(
       () => {
-        console.log("copy successfully");
-        setTimeout(() => setShowMarkGood(false), 400)
+        setTimeout(() => setShowMarkGood(false), 700);
       },
       (error) => {
-        console.log("failed to copy", error)
-        setShowMarkGood(false)
+        setShowMarkGood(false);
       }
     );
   };
   return (
     <>
       <ToastMessage />
-      <div className="border sm:w-auto w-[120%] text-balance break-words flex items-center justify-between shadow-md py-4 px-3">
+      <div className="border mb-3 rounded-l-md cards_colors_box text-white sm:w-auto w-[120%] text-balance break-words flex items-center justify-between py-4 px-3">
         <div
           onClick={handleeachData}
           className="w-full flex items-center h-[50px]"
         >
           <span className="md:w-[65%] w-[95%] flex justify-between">
-            <h1 className="font-bold text-sm">{ShortUrl}</h1>
-            <p className="hidden md:block">clicks: {Clicks}</p>
+            <h1 className="font-medium text-sm">{ShortUrl}</h1>
+            <p className="hidden md:block font-medium">clicks: {Clicks}</p>
           </span>
         </div>
         <div>
           <p className="flex items-center space-x-4 mb-2">
             <span className="cursor-pointer z-10">
-              {showMarkGood && <IoCheckmarkCircleSharp size={16} className={showMarkGood ? "text-green-500 " : ''} />}
+              {showMarkGood && (
+                <IoCheckmarkCircleSharp
+                  size={16}
+                  className={showMarkGood ? "text-green-500 " : ""}
+                />
+              )}
               {!showMarkGood && <TbCopy onClick={() => handleCopy(ShortUrl)} />}
             </span>
             <span
               onClick={handleCustomiseUrl}
-              className="text-[13px] cursor-pointer"
+              className="text-[13px] font-medium cursor-pointer"
             >
               Edit
             </span>
@@ -100,7 +103,7 @@ const UserDashboardUi = ({
               <AiTwotoneDelete />
             </span>
           </p>
-          <p className="">{date}</p>
+          <p className="font-medium">{date}</p>
         </div>
       </div>
     </>

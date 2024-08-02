@@ -10,8 +10,6 @@ const App = () => {
       <SectionOne />
       <PowerfulFeatures />
       <Footer />
-
-      {/* <UserDashboard /> */}
     </div>
   );
 };

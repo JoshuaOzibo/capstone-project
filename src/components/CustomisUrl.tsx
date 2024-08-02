@@ -57,7 +57,10 @@ const CustomisUrl = ({
       <div>
         <form onSubmit={handleUpdate}>
           <div className="p-[20px]">
-            <div onClick={() => setShowModal(false)} className=" cursor-pointer flex justify-end">
+            <div
+              onClick={() => setShowModal(false)}
+              className=" cursor-pointer flex justify-end"
+            >
               <p className="text-2xl border-2 px-3 rounded-md">X</p>
             </div>
             <div>

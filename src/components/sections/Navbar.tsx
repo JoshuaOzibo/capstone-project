@@ -4,10 +4,11 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import SignOut from "../auth/SignOut";
 import { auth } from "../ClientDatabase";
 import { Link } from "react-router-dom";
-import '../Styles.css';
+import "../Styles.css";
 
 const Navbar = ({ setOpen, open }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   useEffect(() => {
     const unSubscribe = auth.onAuthStateChanged((user) => {
@@ -19,29 +20,49 @@ const Navbar = ({ setOpen, open }) => {
   const handleRegister = () => {
     setOpen(true);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scroll = window.scrollY;
+      scroll > 100 ? setIsScrolled(true) : setIsScrolled(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="z-10 w-full fixed m-auto backdrop-blur-sm gradient_background py-[1rem] sm:px-[2rem] px-[1rem]">
+    <section
+      className={`z-10 w-full fixed transition-all ease-out delay-300 m-auto backdrop-blur-sm py-[1rem] sm:px-[2rem] px-[1rem] ${
+        isScrolled ? "gradient_background " : "bg-transparent py-4"
+      }`}
+    >
       <div className="flex font-bold items-center justify-between">
         <h1 className=" cursor-pointer">
-          {/* <img className="w-[50px] h-[20px]" src="https://www.prisma.io/illustrations/home-page/hero-lines.svg" alt="" /> */}
-          <p>JoshProject</p>
+          <p className="text-white">JoshProject</p>
         </h1>
 
-        {isLoggedIn && <ul className="md:flex hidden space-x-5 items-center">
-
-          <Link to='/analytics' className=" cursor-pointer">Dashboard</Link>
-        </ul>}
+        {isLoggedIn && (
+          <ul className="md:flex hidden space-x-5 items-center">
+            <Link to="/analytics" className=" cursor-pointer text-white">
+              Dashboard
+            </Link>
+          </ul>
+        )}
 
         <div className=" cursor-pointer">
-          {!isLoggedIn && <p onClick={handleRegister}>Register</p>}
+          {!isLoggedIn && (
+            <p className="text-white" onClick={handleRegister}>
+              Register
+            </p>
+          )}
           {isLoggedIn && (
             <Menu as="div" className="relative inline-block text-left">
               <div>
-                <MenuButton className="inline-flex uppercase w-full justify-center gap-x-1.5 rounded-md hover:bg-blue-500 px-3 py-2 text-sm font-semibold text-gray-900 border border-blue-300 ">
+                <MenuButton className="inline-flex text-white uppercase w-full justify-center gap-x-1.5 rounded-md hover:bg-blue-500 px-3 py-2 text-sm font-semibold border border-blue-300 ">
                   My-Profile
                   <ChevronDownIcon
                     aria-hidden="true"
-                    className="-mr-1 h-5 text-black"
+                    className="-mr-1 h-5 text-white"
                   />
                 </MenuButton>
               </div>
@@ -57,7 +78,10 @@ const Navbar = ({ setOpen, open }) => {
                     </a>
                   </MenuItem>
                   <MenuItem>
-                    <Link to='/analytics' className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
+                    <Link
+                      to="/analytics"
+                      className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                    >
                       Dashboard
                     </Link>
                   </MenuItem>
@@ -72,7 +96,7 @@ const Navbar = ({ setOpen, open }) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

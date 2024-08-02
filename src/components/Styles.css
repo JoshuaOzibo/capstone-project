@@ -1,13 +1,23 @@
-
-
-
-.gradient_background{
-    @apply bg-gradient-to-l from-blue-500 to-cyan-400;
+.gradient_background {
+  @apply bg-gradient-to-l from-blue-500 to-cyan-400;
 }
 
-.blue_gradient{
-    @apply bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent;
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent;
 }
-.blue_gradient_p{
-    @apply bg-gradient-to-l from-blue-300 to-cyan-500 bg-clip-text text-transparent;
+.blue_gradient_p {
+  @apply bg-gradient-to-l from-blue-300 to-cyan-500 bg-clip-text text-transparent;
+}
+
+/* for boxes */
+.cards_colors_box {
+  @apply bg-gradient-to-l from-blue-500 to-cyan-300;
+}
+
+.cards_colors_p {
+  @apply bg-gradient-to-l from-blue-700 to-cyan-700 bg-clip-text text-transparent;
+}
+
+.cards_colors_H {
+  @apply bg-gradient-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent;
 }

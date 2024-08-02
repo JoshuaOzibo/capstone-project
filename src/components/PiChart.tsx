@@ -11,11 +11,10 @@ class PiChart extends PureComponent {
     //   size: number;
     // };
 
-
-    type typoType ={
-      data01:Readonly<{ name: string, value: number}>,
-      size: Readonly<number>
-    }
+    type typoType = {
+      data01: Readonly<{ name: string; value: number }>;
+      size: Readonly<number>;
+    };
     const { data01, size }: typoType = this.props;
 
     return (
@@ -28,7 +27,7 @@ class PiChart extends PureComponent {
             cx="50%"
             cy="50%"
             outerRadius={size}
-            fill="#8884d8"
+            fill="skyblue"
             label
           />
           <Tooltip />

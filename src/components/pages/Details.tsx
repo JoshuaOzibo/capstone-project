@@ -5,7 +5,10 @@ import { TbCopy } from "react-icons/tb";
 import { MdOutlineFileDownload } from "react-icons/md";
 import PiChart from "../PiChart";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
-import DetailsPageSkeleton from '../skeletonLoading/DetailsPageSkeleton'
+import DetailsPageSkeleton from "../skeletonLoading/DetailsPageSkeleton";
+import "../Styles.css";
+import { CiLink } from "react-icons/ci";
+
 
 interface datatypeItem {
   originalUrl: string;
@@ -22,8 +25,6 @@ const Details = () => {
   const [showMarkGood, setShowMarkGood] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  console.log(urlCode);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,7 +35,6 @@ const Details = () => {
           throw new Error("Route not found");
         }
         const result = await response.json();
-        console.log(result);
         setData(result);
       } catch (error) {
         setError(error);
@@ -45,12 +45,16 @@ const Details = () => {
   }, [urlCode]);
 
   if (error) {
-    return <div className="text-center mt-[50vh]">
-      <p className="font-bold text-3xl mb-5">Error check your url or refresh the page</p>
-      <Link to="/analytics" className="border px-16 font-bold py-2 ">
-        {"<<Back"}
-      </Link>
-    </div>;
+    return (
+      <div className="text-center mt-[50vh]">
+        <p className="font-bold text-3xl mb-5">
+          Error check your url or refresh the page
+        </p>
+        <Link to="/analytics" className="rounded-md cards_colors_box text-white px-16 font-bold py-2 ">
+          {"Back"}
+        </Link>
+      </div>
+    );
   }
 
   if (!data) {
@@ -83,11 +87,10 @@ const Details = () => {
 
   const handleCopy = (ShortUrl: string) => {
     setShowMarkGood(true);
-
     navigator.clipboard.writeText(ShortUrl).then(
       () => {
         console.log("copy successfully");
-        setTimeout(() => setShowMarkGood(false), 400);
+        setTimeout(() => setShowMarkGood(false), 1000);
       },
       (error) => {
         console.log("failed to copy", error);
@@ -98,32 +101,33 @@ const Details = () => {
 
   return (
     <>
-      <Link to="/analytics" className="border px-16 font-bold py-3 ">
-        {"<<Back"}
+      <Link to="/analytics" className="border cards_colors_box rounded-md ml-5 px-16 font-bold py-3 ">
+        {"Back"}
       </Link>
       <section className="px-5">
+        <p className="text-center font-bold md:text-4xl text-2xl mt-4">User Analytics</p>
         <main className="w-full grid gap-5 my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5">
-          <div className="border-2 p-5 rounded-lg">
+          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Clicks</h3>
-            <p className=" text-[#a8a7a7]">Total clicks on the URL</p>
+            <p className=" font-medium">Total clicks on the URL</p>
 
             <div className="w-full text-center my-4">
               <p className="text-4xl font-bold">{data.clicks}</p>
             </div>
           </div>
 
-          <div className="border-2 p-5 rounded-lg">
+          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">New URL</h3>
-            <p className=" text-[#a8a7a7]">The generated short URL</p>
+            <p className=" font-medium">The generated short URL</p>
 
             <div className="w-full text-center my-4">
-              <p className="font-medium">{data.shortUrl}</p>
+              <p className="font-medium flex space-x-1"><span><CiLink size={30} /></span><span>{data.shortUrl}</span></p>
             </div>
           </div>
 
-          <div className="border-2 p-5 rounded-lg">
+          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Date</h3>
-            <p className=" text-[#a8a7a7]">When the URL was generated</p>
+            <p className=" font-medium">When the URL was generated</p>
 
             <div className="w-full text-center my-4">
               <p className="text-4xl font-bold">{data.date}</p>
@@ -132,11 +136,11 @@ const Details = () => {
         </main>
 
         <section className="w-full gap-5 grid md:grid-cols-2 grid-cols-1">
-          <div className="border-2 p-5 rounded-lg">
+          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">QR Code</h3>
-            <p className=" text-[#a8a7a7]">Scan to access the URL</p>
+            <p className=" font-medium">Scan to access the URL</p>
 
-            <div className="w-full mt-10 flex justify-center">
+            <div className="w-full  mt-10 flex justify-center">
               <div className="">
                 <span className="flex mb-5 justify-center space-x-36">
                   {showMarkGood && (
@@ -155,7 +159,7 @@ const Details = () => {
                   <MdOutlineFileDownload
                     className="cursor-pointer"
                     onClick={handleDownload}
-                    size={20}
+                    size={25}
                   />
                 </span>
                 <span ref={qrRef} className="lg:block md:hidden hidden">
@@ -170,9 +174,9 @@ const Details = () => {
               </div>
             </div>
           </div>
-          <div className="border-2 p-5 rounded-lg">
+          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Pie Chart</h3>
-            <p className=" text-[#a8a7a7]">Breakdown of clicks by source</p>
+            <p className="font-medium">Breakdown of clicks by source</p>
 
             <div>
               <span className="bg-yellow-300 ">

@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Img from "../../assets/pexels-asadphoto-457882.jpg";
-import '../Styles.css'
+import qrImg from "../../assets/qrcode.png";
+import "../Styles.css";
 
 const SectionOne = () => {
+  const [changeIndex, setChangeIndex] = useState(0);
+
+  const selectItems = [
+    {
+      id: 1,
+      h1: "Shrink Your Links and Boost Your Engagement",
+
+      p: "Turn lengthy URLs into compact, shareable links in seconds. Enhance your digital footprint and make sharing simpler than ever. Increase your link click-through rates with easy-to-remember shor URLs. See the difference in your engagement metrics.",
+    },
+    {
+      id: 2,
+      h1: "Real-Time Click Tracking",
+
+      p: "Stay informed with up-to-the-minute analytics. See who’s clicking your links, from where, and when, all in one place. Our platform ensures your links are safe and reliable. Trust in our robust security measures to keep your data protected.",
+    },
+  ];
+
+  const selectImg = [
+    {
+      id: 1,
+      img: `${Img}`,
+    },
+    {
+      id: 2,
+      img: `${qrImg}`,
+    },
+  ];
+
+  const { img, id } = selectImg[changeIndex];
+
   return (
     <>
       <section className="">
@@ -14,60 +45,31 @@ const SectionOne = () => {
             </h1>
           </div>
         </div>
-      </section>
 
-      <section className="md:flex px-4 md:text-start text-center block w-full md:space-x-6 lg:w-[90%] m-auto justify-between items-center mt-[60px]">
-        <div className="lg:w-[40%] md:w-[90%] w-full">
-          <div>
-            <h1 className="font-bold text-lg mb-2">
-              Shrink Your Links, Expand Your Reach
-            </h1>
-            <p className="leading-[1.3rem] text-[#c4c4c4]">
-              Turn lengthy URLs into compact, shareable links in seconds.
-              Enhance your digital footprint and make sharing simpler than ever.
-            </p>
-          </div>
-          <div>
-            <h2 className="font-bold text-lg mb-2">
-              Boost Your Engagement
-            </h2>
-            <p className="leading-[1.3rem] text-[#c4c4c4]">
-              Increase your link click-through rates with easy-to-remember short
-              URLs. See the difference in your engagement metrics.
-            </p>
-          </div>
-        </div>
-        <img
-          className="  md:w-[400px] md:h-full h-[300px] w-full object-cover m-auto md:mt-0 mt-10"
-          src={Img}
-          alt="img"
-        />
-      </section>
+        <section>
+          <main className="grid md:grid-cols-2 space-x-2 mx-3 md:items-center">
+            <div className="space-y-3">
+              {selectItems.map((item, index) => (
+                <div
+                  onMouseEnter={() => setChangeIndex(index)}
+                  className="border rounded-md hover:bg-sky-100 cursor-pointer transition-all ease-out delay-150 p-2"
+                  key={item.id}
+                >
+                  <h1 className="font-bold mb-1 blue_gradient">{item.h1}</h1>
+                  <p className="text-[#c4c4c4]">{item.p}</p>
+                </div>
+              ))}
+            </div>
 
-      <section className="flex px-4 md:text-start  md:flex-row flex-col-reverse text-center w-full md:space-x-6 lg:w-[90%] m-auto justify-between items-center mt-[60px]">
-        <img
-          className=" md:w-[400px] md:h-full h-[300px] w-full object-cover md:m-0 m-auto"
-          src={Img}
-          alt="img"
-        />
-        <div className="lg:w-[40%] md:mb-0 mb-10 md:w-[90%] w-full">
-          <div>
-            <h2 className="font-bold  mt-10 md:mt-0 text-lg mb-2 md:text-end">
-              Real-Time Click Tracking
-            </h2>
-            <p className="leading-[1.3rem] md:text-end text-[#c4c4c4]">
-              Stay informed with up-to-the-minute analytics. See who’s clicking
-              your links, from where, and when, all in one place.
-            </p>
-          </div>
-          <div>
-            <h2 className="font-bold md:text-end text-lg mt-3 mb-2">Secure and Trustworthy</h2>
-            <p className="leading-[1.3rem] text-end text-[#c4c4c4]">
-              Our platform ensures your links are safe and reliable. Trust in
-              our robust security measures to keep your data protected.
-            </p>
-          </div>
-        </div>
+            <section>
+              <img
+                className="w-full md:mt-0 mt-5 h-[300px] object-cover delay-150"
+                src={img}
+                alt="img"
+              />
+            </section>
+          </main>
+        </section>
       </section>
     </>
   );

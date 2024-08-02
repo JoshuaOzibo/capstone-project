@@ -2,6 +2,8 @@ import { useState } from "react";
 import { auth } from "../ClientDatabase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
+import ToastMessage, { showToast } from "../toastMessage/ToastMessage.tsx";
+
 
 const Login = ({setOpen}) => {
   const [email, setEmail] = useState("");
@@ -17,16 +19,17 @@ const Login = ({setOpen}) => {
         password
       );
       const user = userCredential.user;
-      console.log("User logged in:", user);
-      setOpen(false)
+      showToast("User logged in successful", 'success');
+      setOpen(false);
     } catch (error) {
-      console.error("Error logging in:", error);
+      showToast("Error logging in user", 'error');
       setError('Email or Password not correct');
     }
   };
 
   return (
     <div>
+      <ToastMessage />
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>
         <div className="mb-5">

@@ -4,7 +4,7 @@ import Modal from "./Modal.tsx";
 import DisplayShortUrlResult from "../components/shortUrlResult/DisplayShortUrlResult.tsx";
 import { FadeLoader } from "react-spinners";
 import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
-import './Styles.css'
+import "./Styles.css";
 
 const Shortener = ({ open, setOpen }) => {
   const [shortUrl, setShortUrl] = useState<string | null>("");
