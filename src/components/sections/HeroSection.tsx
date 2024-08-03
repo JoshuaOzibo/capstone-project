@@ -1,5 +1,4 @@
 import { useState } from "react";
-import HeroImg from "../../assets/pexels-asadphoto-457882.jpg";
 import Shortener from "../Shortener";
 import Navbar from "./Navbar";
 import "../Styles.css";
@@ -7,7 +6,8 @@ import "../Styles.css";
 const HeroSection = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div class="relative bg-[#090a15] w-full overflow-hidden">
+    <>
+      <div className="relative bg-[#090a15] w-full overflow-hidden">
       <div className="z-20 absolute w-full">
         <Navbar open={open} setOpen={setOpen} />
       </div>
@@ -31,9 +31,9 @@ const HeroSection = () => {
         src="https://www.prisma.io/illustrations/home-page/hero-lines.svg"
         className="md:w-full w-full h-[50rem] object-cover"
         alt="HeroImg"
-        srcset=""
       />
     </div>
+    </>
   );
 };
 

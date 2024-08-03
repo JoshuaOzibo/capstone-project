@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { auth } from "../ClientDatabase";
+import { ReactEventHandler, useState } from "react";
+import { auth } from "../ClientDatabase.ts";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import ToastMessage, { showToast } from "../toastMessage/ToastMessage.tsx";
+import {openModalType} from '../TypesExport.ts'
 
-
-const Login = ({setOpen}) => {
+const Login = ({ setOpen }: openModalType) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -19,11 +19,11 @@ const Login = ({setOpen}) => {
         password
       );
       const user = userCredential.user;
-      showToast("User logged in successful", 'success');
+      showToast("User logged in successful", "success");
       setOpen(false);
     } catch (error) {
-      showToast("Error logging in user", 'error');
-      setError('Email or Password not correct');
+      showToast("Error logging in user", "error");
+      setError("Email or Password not correct");
     }
   };
 
@@ -33,20 +33,20 @@ const Login = ({setOpen}) => {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>
         <div className="mb-5">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          className="border w-full py-2 px-3"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          className="border w-full py-2 px-3 mt-5"
-        />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="border w-full py-2 px-3"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="border w-full py-2 px-3 mt-5"
+          />
         </div>
         <button
           type="submit"

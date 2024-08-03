@@ -8,22 +8,14 @@ import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import DetailsPageSkeleton from "../skeletonLoading/DetailsPageSkeleton";
 import "../Styles.css";
 import { CiLink } from "react-icons/ci";
-
-
-interface datatypeItem {
-  originalUrl: string;
-  shortUrl: string;
-  clicks: number;
-  date: string;
-}
+import { detailsdDatatypeItem } from "../TypesExport";
 
 const Details = () => {
   const { urlCode } = useParams();
-  const [data, setData] = useState<datatypeItem | null>(null);
+  const [data, setData] = useState<detailsdDatatypeItem | null>(null);
   const [error, setError] = useState(null);
   const qrRef = useRef<HTMLDivElement>(null);
   const [showMarkGood, setShowMarkGood] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +28,7 @@ const Details = () => {
         }
         const result = await response.json();
         setData(result);
-      } catch (error) {
+      } catch (error: any) {
         setError(error);
       }
     };
@@ -47,10 +39,13 @@ const Details = () => {
   if (error) {
     return (
       <div className="text-center mt-[50vh]">
-        <p className="font-bold text-3xl mb-5">
+        <p className="font-bold blue_gradient text-3xl mb-5">
           Error check your url or refresh the page
         </p>
-        <Link to="/analytics" className="rounded-md cards_colors_box text-white px-16 font-bold py-2 ">
+        <Link
+          to="/analytics"
+          className="rounded-md cards_colors_box text-white px-16 font-bold py-2 "
+        >
           {"Back"}
         </Link>
       </div>
@@ -101,11 +96,16 @@ const Details = () => {
 
   return (
     <>
-      <Link to="/analytics" className="border cards_colors_box rounded-md ml-5 px-16 font-bold py-3 ">
+      <Link
+        to="/analytics"
+        className="border cards_colors_box rounded-md ml-5 px-16 font-bold py-3 "
+      >
         {"Back"}
       </Link>
       <section className="px-5">
-        <p className="text-center font-bold md:text-4xl text-2xl mt-4">User Analytics</p>
+        <p className="text-center blue_gradient font-bold md:text-4xl text-2xl mt-4">
+          User Analytics
+        </p>
         <main className="w-full grid gap-5 my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5">
           <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Clicks</h3>
@@ -121,7 +121,12 @@ const Details = () => {
             <p className=" font-medium">The generated short URL</p>
 
             <div className="w-full text-center my-4">
-              <p className="font-medium flex space-x-1"><span><CiLink size={30} /></span><span>{data.shortUrl}</span></p>
+              <p className="font-medium flex space-x-1">
+                <span>
+                  <CiLink size={30} />
+                </span>
+                <span>{data.shortUrl}</span>
+              </p>
             </div>
           </div>
 
@@ -162,15 +167,30 @@ const Details = () => {
                     size={25}
                   />
                 </span>
-                <span ref={qrRef} className="lg:block md:hidden hidden">
-                  <QRCodeCanvas id="canvas" size={300} value={data.shortUrl} />
-                </span>
-                <span ref={qrRef} className="lg:hidden md:block hidden">
-                  <QRCodeCanvas id="canvas" size={260} value={data.shortUrl} />
-                </span>
-                <span ref={qrRef} className="lg:hidden md:hidden block">
-                  <QRCodeCanvas id="canvas" size={200} value={data.shortUrl} />
-                </span>
+                <p className="border-[8px] border-blue-400">
+                  <span ref={qrRef} className="lg:block md:hidden hidden">
+                    <QRCodeCanvas
+                      id="canvas"
+                      size={300}
+                      value={data.shortUrl}
+                    />
+                  </span>
+                  <span ref={qrRef} className="lg:hidden md:block hidden">
+                    <QRCodeCanvas
+                      id="canvas"
+                      size={260}
+                      value={data.shortUrl}
+                    />
+                  </span>
+
+                  <span ref={qrRef} className="lg:hidden md:hidden block">
+                    <QRCodeCanvas
+                      id="canvas"
+                      size={200}
+                      value={data.shortUrl}
+                    />
+                  </span>
+                </p>
               </div>
             </div>
           </div>

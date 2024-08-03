@@ -4,7 +4,7 @@ import qrImg from "../../assets/qrcode.png";
 import "../Styles.css";
 
 const SectionOne = () => {
-  const [changeIndex, setChangeIndex] = useState(0);
+  const [changeIndex, setChangeIndex] = useState<number>(0);
 
   const selectItems = [
     {

@@ -4,7 +4,10 @@ import { TbCopy } from "react-icons/tb";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 
-const QRcode = ({ shortUrl }: string | null) => {
+interface shortUrlType {
+  shortUrl: string;
+}
+const QRcode = ({ shortUrl }: shortUrlType) => {
   const qrRef = useRef<HTMLDivElement>(null);
   const [showMarkGood, setShowMarkGood] = useState(false);
   const [changeQrColor, setChangeQrColor] = useState("#000000");

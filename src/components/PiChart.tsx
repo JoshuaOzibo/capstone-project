@@ -1,21 +1,10 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import { piechatype } from "./TypesExport";
 
-class PiChart extends PureComponent {
+class PiChart extends PureComponent<piechatype> {
   render() {
-    // type pieDataType = {
-    //   data01: {
-    //     name: string;
-    //     value: number;
-    //   };
-    //   size: number;
-    // };
-
-    type typoType = {
-      data01: Readonly<{ name: string; value: number }>;
-      size: Readonly<number>;
-    };
-    const { data01, size }: typoType = this.props;
+    const { data01, size } = this.props;
 
     return (
       <ResponsiveContainer className=" md:pt-10" width="100%" height={400}>

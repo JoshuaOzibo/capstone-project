@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../ClientDatabase";
-import {
-  doc,
-  getDoc,
-  collection,
-  getDocs,
-  onSnapshot,
-  QuerySnapshot,
-} from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import UserDashboardUi from "./UserDashboardUi";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +8,7 @@ import DashboardSkeleton from "../skeletonLoading/DashboardSkeleton";
 import CustomisUrl from "../CustomisUrl";
 import Modal from "../resuableModal";
 import { parentUserDashboardUrlType } from "../TypesExport";
-import '../Styles.css';
+import "../Styles.css";
 
 const UserDashboard = () => {
   const [userData, setUserData] = useState<parentUserDashboardUrlType[]>([]);
@@ -44,7 +37,6 @@ const UserDashboard = () => {
           });
         } catch (error) {
           setError("Error fetching user data:");
-          
         } finally {
           setLoading(false);
         }
@@ -127,7 +119,9 @@ const UserDashboard = () => {
             />
           </Modal>
         )}
-        <h2 className="text-center mt-12 font-bold text-2xl blue_gradient md:text-4xl">User Dashboard</h2>
+        <h2 className="text-center mt-12 font-bold text-2xl blue_gradient md:text-4xl">
+          User Dashboard
+        </h2>
         <div className="grid grid-cols-2 gap-5 mx-5">
           <div className="px-5 text-white rounded-md cards_colors_box md:h-[200px] h-[150px] mt-5">
             <p className="md:text-2xl md:font-black font-bold">Total Clicks:</p>

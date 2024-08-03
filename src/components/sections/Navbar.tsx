@@ -5,8 +5,9 @@ import SignOut from "../auth/SignOut";
 import { auth } from "../ClientDatabase";
 import { Link } from "react-router-dom";
 import "../Styles.css";
+import { openModalType } from "../TypesExport";
 
-const Navbar = ({ setOpen, open }) => {
+const Navbar = ({ setOpen }: openModalType) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
@@ -32,7 +33,7 @@ const Navbar = ({ setOpen, open }) => {
 
   return (
     <section
-      className={`z-10 w-full fixed transition-all ease-out delay-300 m-auto backdrop-blur-sm py-[1rem] sm:px-[2rem] px-[1rem] ${
+      className={`z-10 w-full fixed transition-all ease-out delay-300 m-auto  py-[1rem] sm:px-[2rem] px-[1rem] ${
         isScrolled ? "gradient_background " : "bg-transparent py-4"
       }`}
     >

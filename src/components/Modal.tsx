@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import Signup from "./auth/Signup";
 import Login from "./auth/Login";
-import { stateSetsTypes } from "./TypesExport";
+import { openModalType } from "./TypesExport";
 
-const Modal = ({ setOpen, open }: stateSetsTypes) => {
+const Modal = ({ setOpen, open }: openModalType) => {
   const [isTrue, setIsTrue] = useState<boolean>(true);
 
   return (

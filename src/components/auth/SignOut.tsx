@@ -11,18 +11,16 @@ const SignOut = () => {
       showToast("User signed out successfully", "success");
     } catch (error) {
       showToast("Error signing out", "error");
-
-    };
-    
+    }
   };
 
   return (
     <>
       <ToastMessage />
       <button onClick={handleSignOut} className="flex items-center space-x-2">
-      <ArrowLeftOnRectangleIcon className="w-6 h-6 text-red-500" />
-      <span>Sign out</span>
-    </button>
+        <ArrowLeftOnRectangleIcon className="w-6 h-6 text-red-500" />
+        <span>Sign out</span>
+      </button>
     </>
   );
 };

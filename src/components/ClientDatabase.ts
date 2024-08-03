@@ -2,16 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
-type firebaseConfigtypes = {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
-  measurementId: string;
-};
+import { firebaseConfigtypes } from "./TypesExport";
 
 const firebaseConfig: firebaseConfigtypes = {
   apiKey: import.meta.env.VITE_API_KEY,

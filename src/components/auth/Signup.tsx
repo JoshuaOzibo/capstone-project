@@ -3,11 +3,10 @@ import { auth, db } from "../ClientDatabase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
-import {stateSetsTypes} from '../TypesExport';
+import { signupTypes } from "../TypesExport";
 import ToastMessage, { showToast } from "../toastMessage/ToastMessage.tsx";
 
-
-const Signup = ({ setIsTrue }: stateSetsTypes) => {
+const Signup = ({ setIsTrue }: signupTypes) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -29,10 +28,9 @@ const Signup = ({ setIsTrue }: stateSetsTypes) => {
         name: { name },
       });
       setIsTrue(false);
-      showToast("User signed up scuuessful", 'success');
+      showToast("User signed up scuuessful", "success");
     } catch (error: any) {
-      showToast("User signed up scuuessful", 'error');
-
+      showToast("User signed up scuuessful", "error");
     }
   };
   return (

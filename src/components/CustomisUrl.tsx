@@ -40,7 +40,7 @@ const CustomisUrl = ({
         setShowModal(false);
 
         showToast("URL updated successfully!", "success");
-      } catch (error) {
+      } catch (error: any) {
         setLoading(false);
         setError(error.message);
         showToast(`cannot update Url`, "error");
