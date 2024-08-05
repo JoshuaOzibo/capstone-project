@@ -1,7 +1,7 @@
 const DashboardSkeleton = () => {
   return (
     <>
-      <div className="grid grid-cols-2 gap-5 mt-10 mx-5">
+      <div className="grid grid-cols-2 gap-5 pt-10 mx-5">
         <div className="px-5 bg-slate-200 animate-pulse shadow-md md:h-[200px] h-[150px] mt-5">
           <p className="md:text-2xl md:font-black w-[30%] animate-pulse bg-slate-300 font-bold"></p>
           <p className=" mt-[30px] w-[30%] h-[20px] animate-pulse bg-slate-300 md:text-5xl text-center text-3xl md:font-black font-bold items-center"></p>

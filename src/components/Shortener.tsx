@@ -20,6 +20,7 @@ const Shortener = ({ open, setOpen }: openModalType) => {
       try {
         setIsLoading(true);
         const idToken = await auth.currentUser.getIdToken();
+        
         const response = await fetch("http://127.0.0.1:8000/shortenurl", {
           method: "POST",
           headers: {

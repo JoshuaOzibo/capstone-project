@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Img from "../../assets/pexels-asadphoto-457882.jpg";
 import qrImg from "../../assets/qrcode.png";
 import "../Styles.css";
+import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
-const SectionOne = () => {
+const Transform = () => {
   const [changeIndex, setChangeIndex] = useState<number>(0);
 
   const selectItems = [
@@ -51,19 +52,21 @@ const SectionOne = () => {
             <div className="space-y-3">
               {selectItems.map((item, index) => (
                 <div
-                  onMouseEnter={() => setChangeIndex(index)}
-                  className="border rounded-md hover:bg-sky-100 cursor-pointer transition-all ease-out delay-150 p-2"
+                  className="border cards_colors_box rounded-md hover:bg-sky-100 transition-all ease-out delay-150 p-2"
                   key={item.id}
                 >
-                  <h1 className="font-bold mb-1 blue_gradient">{item.h1}</h1>
-                  <p className="text-[#c4c4c4]">{item.p}</p>
+                  <div onClick={() => setChangeIndex(index)} className="flex items-center cursor-pointer justify-between">
+                  <h1 className="font-bold text-lg text-white mb-1 blue_gradient">{item.h1}</h1>
+                  {changeIndex === index ? <CiCircleMinus color="white" size={25} />: <CiCirclePlus color="white" size={25} />}
+                  </div>
+                  {changeIndex === index ? <p className="text-white w-[95%] font-medium">{item.p}</p>: ""}
                 </div>
               ))}
             </div>
 
             <section>
               <img
-                className="w-full md:mt-0 mt-5 h-[300px] object-cover delay-150"
+                className="w-full rounded-md md:mt-0 mt-5 h-[300px] object-cover delay-150"
                 src={img}
                 alt="img"
               />
@@ -75,4 +78,4 @@ const SectionOne = () => {
   );
 };
 
-export default SectionOne;
+export default Transform;

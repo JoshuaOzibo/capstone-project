@@ -38,7 +38,7 @@ const Details = () => {
 
   if (error) {
     return (
-      <div className="text-center mt-[50vh]">
+      <div className="text-center pt-[50vh]">
         <p className="font-bold blue_gradient text-3xl mb-5">
           Error check your url or refresh the page
         </p>
@@ -96,12 +96,12 @@ const Details = () => {
 
   return (
     <>
-      <Link
+      <p className="pt-5"><Link
         to="/analytics"
-        className="border cards_colors_box rounded-md ml-5 px-16 font-bold py-3 "
+        className="border text-white cards_colors_box rounded-md ml-5 px-16 font-bold py-3 "
       >
         {"Back"}
-      </Link>
+      </Link></p>
       <section className="px-5">
         <p className="text-center blue_gradient font-bold md:text-4xl text-2xl mt-4">
           User Analytics

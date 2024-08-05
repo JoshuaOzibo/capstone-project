@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { auth, db } from "../ClientDatabase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
 import { signupTypes } from "../TypesExport";
@@ -20,17 +20,17 @@ const Signup = ({ setIsTrue }: signupTypes) => {
         password
       );
       const user = userCredential.user;
-      console.log(user);
 
       // // Add user data to Firestore
       await setDoc(doc(db, "users", user.uid), {
         id: user.uid,
         name: { name },
       });
+      await signOut(auth);
       setIsTrue(false);
       showToast("User signed up scuuessful", "success");
     } catch (error: any) {
-      showToast("User signed up scuuessful", "error");
+      showToast("user already exist", "error");
     }
   };
   return (

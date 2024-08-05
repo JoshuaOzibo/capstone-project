@@ -1,12 +1,12 @@
 import HeroSection from "./components/sections/HeroSection.jsx";
-import SectionOne from "./components/sections/Sections.js";
-import PowerfulFeatures from "./components/sections/PowerfulFeatures.js";
-import Footer from "./components/sections/Footer.js";
+import TransFormSection from "./components/sections/Transform.tsx"
+import PowerfulFeatures from "./components/sections/PowerfulFeatures.tsx";
+import Footer from "./components/sections/Footer.tsx";
 const App = () => {
   return (
     <div className="">
       <HeroSection />
-      <SectionOne />
+      <TransFormSection />
       <PowerfulFeatures />
       <Footer />
     </div>

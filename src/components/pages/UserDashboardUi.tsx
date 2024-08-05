@@ -88,7 +88,7 @@ const UserDashboardUi = ({
               {showMarkGood && (
                 <IoCheckmarkCircleSharp
                   size={16}
-                  className={showMarkGood ? "text-green-500 " : ""}
+                  className={showMarkGood ? "white " : ""}
                 />
               )}
               {!showMarkGood && <TbCopy onClick={() => handleCopy(ShortUrl)} />}

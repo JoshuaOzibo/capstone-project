@@ -2,14 +2,42 @@ import React, { useState, useEffect } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import SignOut from "../auth/SignOut";
-import { auth } from "../ClientDatabase";
+import { auth, db } from "../ClientDatabase";
+import { doc, getDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import "../Styles.css";
 import { openModalType } from "../TypesExport";
+import { onAuthStateChanged } from "firebase/auth";
+import HeaderLogo from '../../assets/cb857sgqnwslzgtjnfv.svg'
 
 const Navbar = ({ setOpen }: openModalType) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [nameOfUser, setNameOfUser] = useState<string>("");
+
+  const getUserName = async () => {
+    try {
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const userId = user.uid;
+          const userDocRef = doc(db, "users", userId);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const { name } = userDoc.data();
+            setNameOfUser(name.name);
+
+          } else {
+            console.log("No such document!");
+          }
+        }
+      });
+    } catch (error) {
+      console.error("Error fetching current user's name:", error);
+    }
+  };
+
+  getUserName();
 
   useEffect(() => {
     const unSubscribe = auth.onAuthStateChanged((user) => {
@@ -32,15 +60,17 @@ const Navbar = ({ setOpen }: openModalType) => {
   }, []);
 
   return (
-    <section
+    <>
+      <section
       className={`z-10 w-full fixed transition-all ease-out delay-300 m-auto  py-[1rem] sm:px-[2rem] px-[1rem] ${
         isScrolled ? "gradient_background " : "bg-transparent py-4"
       }`}
     >
       <div className="flex font-bold items-center justify-between">
-        <h1 className=" cursor-pointer">
+        <div className=" flex space-x-1 cursor-pointer">
+        <img className="w-[50%] h-[50%]" src={HeaderLogo} alt="HeaderLogo" />
           <p className="text-white">JoshProject</p>
-        </h1>
+        </div>
 
         {isLoggedIn && (
           <ul className="md:flex hidden space-x-5 items-center">
@@ -53,7 +83,7 @@ const Navbar = ({ setOpen }: openModalType) => {
         <div className=" cursor-pointer">
           {!isLoggedIn && (
             <p className="text-white" onClick={handleRegister}>
-              Register
+              Signup/Login
             </p>
           )}
           {isLoggedIn && (
@@ -74,9 +104,9 @@ const Navbar = ({ setOpen }: openModalType) => {
               >
                 <div className="py-1">
                   <MenuItem>
-                    <a className="block text-center gradient_background  uppercase px-4 py-2 -mt-2 rounded-t-md text-sm text-black-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
-                      joshua
-                    </a>
+                    <h2 className="block text-center gradient_background  uppercase px-4 py-2 -mt-2 rounded-t-md text-sm text-black-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
+                      {nameOfUser}
+                    </h2>
                   </MenuItem>
                   <MenuItem>
                     <Link
@@ -98,6 +128,7 @@ const Navbar = ({ setOpen }: openModalType) => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

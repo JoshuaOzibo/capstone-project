@@ -1,7 +1,7 @@
 const Details = () => {
   return (
     <>
-      <section className="px-5">
+      <section className="px-5 pt-16">
         <main className="w-full grid gap-5 my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5">
           <div className="border-2 p-5 rounded-lg">
             <h3 className="text-2xl font-bold bg-[#c4c4c4] py-2 w-[100px]"></h3>

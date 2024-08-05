@@ -53,11 +53,11 @@ const QRcode = ({ shortUrl }: shortUrlType) => {
           <div className="m-auto mb-20 mt-5">
             <div className=" flex justify-center w-full m-auto">
               <div className="flex items-center space-x-5 mb-5">
-                <button className="border px-5">
+                <button className="border cards_colors_box text-white rounded-md px-5">
                   {showMarkGood && (
                     <IoCheckmarkCircleSharp
                       size={40}
-                      className={showMarkGood ? "text-green-500 " : ""}
+                      className={showMarkGood ? "white" : ""}
                     />
                   )}
                   {!showMarkGood && (
@@ -68,7 +68,7 @@ const QRcode = ({ shortUrl }: shortUrlType) => {
                     />
                   )}
                 </button>
-                <button className="border px-5">
+                <button className="border cards_colors_box text-white rounded-md px-5">
                   <MdOutlineFileDownload
                     onClick={handleDownload}
                     size={40}
@@ -78,7 +78,7 @@ const QRcode = ({ shortUrl }: shortUrlType) => {
                 {!showColor && (
                   <button
                     onClick={() => setShowColor(true)}
-                    className="border px-2 h-full font-bold"
+                    className="border cards_colors_box text-white rounded-md px-2 h-full font-bold"
                   >
                     Advance
                   </button>

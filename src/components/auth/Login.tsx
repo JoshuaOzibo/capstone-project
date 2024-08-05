@@ -18,7 +18,7 @@ const Login = ({ setOpen }: openModalType) => {
         email,
         password
       );
-      const user = userCredential.user;
+
       showToast("User logged in successful", "success");
       setOpen(false);
     } catch (error) {

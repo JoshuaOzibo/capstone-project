@@ -61,9 +61,9 @@ const CustomisUrl = ({
               onClick={() => setShowModal(false)}
               className=" cursor-pointer flex justify-end"
             >
-              <p className="text-2xl border-2 px-3 rounded-md">X</p>
+              <p className="text-2xl border-2 px-4 py-1 gradient_background text-white rounded-md">X</p>
             </div>
-            <div>
+            <div className="text-center blue_gradient w-full font-medium">
               <label>{currentShortUrl}</label>
             </div>
             <div>
@@ -76,7 +76,7 @@ const CustomisUrl = ({
                 placeholder={originalCode}
               />
             </div>
-            <button className="border-2 font-bold rounded-md mt-3 px-2 py-2">
+            <button className="border-2 text-white gradient_background font-bold rounded-md mt-3 px-2 py-2">
               {loading ? <p>Updating...</p> : <p>Update URL</p>}
             </button>
           </div>

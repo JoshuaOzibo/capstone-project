@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, db } from "../ClientDatabase";
 import { collection, onSnapshot } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -14,8 +14,7 @@ const UserDashboard = () => {
   const [userData, setUserData] = useState<parentUserDashboardUrlType[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [originalCustomiseValue, setOriginalCustomiseValue] =
-    useState<string>("");
+  const [originalCustomiseValue, setOriginalCustomiseValue] = useState<string>("");
   const [customisableLongUrl, setCustomisableLongUrl] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState<string | null>(null);
