@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import "../Styles.css";
 import { openModalType } from "../TypesExport";
 import { onAuthStateChanged } from "firebase/auth";
-import HeaderLogo from '../../assets/cb857sgqnwslzgtjnfv.svg'
+import HeaderLogo from '../../assets/cb857sgqnwslzgtjnfv.svg';
+import { motion } from "framer-motion";
 
 const Navbar = ({ setOpen }: openModalType) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -67,9 +68,9 @@ const Navbar = ({ setOpen }: openModalType) => {
       }`}
     >
       <div className="flex font-bold items-center justify-between">
-        <div className=" flex space-x-1 cursor-pointer">
-        <img className="w-[50%] h-[50%]" src={HeaderLogo} alt="HeaderLogo" />
-          <p className="text-white">JoshProject</p>
+        <div className=" flex space-x-1 items-center cursor-pointer">
+        <img className="md:w-[38px] w-[34px] " src={HeaderLogo} alt="HeaderLogo" />
+          <motion.p transition={{delay: 0.5}} className="text-white">JoshProject</motion.p>
         </div>
 
         {isLoggedIn && (

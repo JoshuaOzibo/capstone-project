@@ -11,39 +11,44 @@ const CustomisUrl = ({
   const [newCode, setNewCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [showTimeOut, setShowTimeout] = useState<boolean>(false);
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const currentUser = auth.currentUser;
+    const errorCode = newCode.includes("/");
     if (currentUser) {
-      try {
-        setLoading(true);
-        const idToken = await currentUser.getIdToken();
-        const response = await fetch(
-          `http://127.0.0.1:8000/updateurl/${originalCode}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              "x-user-id": idToken,
-            },
-            body: JSON.stringify({ newCode }),
+      if (errorCode) {
+        setError('input must not include "/" ');
+        setShowTimeout(true)
+      } else {
+        setShowTimeout(false)
+        try {
+          setLoading(true);
+          const idToken = await currentUser.getIdToken();
+          const response = await fetch(
+            `http://127.0.0.1:8000/updateurl/${originalCode}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                "x-user-id": idToken,
+              },
+              body: JSON.stringify({ newCode }),
+            }
+          );
+
+          if (!response.ok) {
+            const result = await response.json();
+            throw new Error(result.error);
           }
-        );
-
-        if (!response.ok) {
-          const result = await response.json();
-          throw new Error(result.error);
+          setLoading(false);
+          setShowModal(false);
+        } catch (error: any) {
+          setLoading(false);
+          setError(error.message);
         }
-        setLoading(false);
-        setShowModal(false);
-
-        showToast("URL updated successfully!", "success");
-      } catch (error: any) {
-        setLoading(false);
-        setError(error.message);
-        showToast(`cannot update Url`, "error");
       }
     } else {
       setLoading(false);
@@ -51,9 +56,9 @@ const CustomisUrl = ({
       showToast("User not authenticated", "error");
     }
   };
+
   return (
     <>
-      <ToastMessage />
       <div>
         <form onSubmit={handleUpdate}>
           <div className="p-[20px]">
@@ -61,11 +66,14 @@ const CustomisUrl = ({
               onClick={() => setShowModal(false)}
               className=" cursor-pointer flex justify-end"
             >
-              <p className="text-2xl border-2 px-4 py-1 gradient_background text-white rounded-md">X</p>
+              <p className="text-2xl border-2 px-4 py-1 gradient_background text-white rounded-md">
+                X
+              </p>
             </div>
             <div className="text-center blue_gradient w-full font-medium">
               <label>{currentShortUrl}</label>
             </div>
+            {showTimeOut &&<p className="text-red-600 font-medium mt-3">{error}</p>}
             <div>
               <input
                 type="text"

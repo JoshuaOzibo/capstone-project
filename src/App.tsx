@@ -8,7 +8,6 @@ const App = () => {
       <HeroSection />
       <TransFormSection />
       <PowerfulFeatures />
-      <Footer />
     </div>
   );
 };

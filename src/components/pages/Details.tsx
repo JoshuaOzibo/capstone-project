@@ -9,6 +9,7 @@ import DetailsPageSkeleton from "../skeletonLoading/DetailsPageSkeleton";
 import "../Styles.css";
 import { CiLink } from "react-icons/ci";
 import { detailsdDatatypeItem } from "../TypesExport";
+import {motion} from 'framer-motion';
 
 const Details = () => {
   const { urlCode } = useParams();
@@ -107,16 +108,16 @@ const Details = () => {
           User Analytics
         </p>
         <main className="w-full grid gap-5 my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5">
-          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.2}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Clicks</h3>
             <p className=" font-medium">Total clicks on the URL</p>
 
             <div className="w-full text-center my-4">
               <p className="text-4xl font-bold">{data.clicks}</p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.3}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">New URL</h3>
             <p className=" font-medium">The generated short URL</p>
 
@@ -128,20 +129,20 @@ const Details = () => {
                 <span>{data.shortUrl}</span>
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.4}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Date</h3>
             <p className=" font-medium">When the URL was generated</p>
 
             <div className="w-full text-center my-4">
               <p className="text-4xl font-bold">{data.date}</p>
             </div>
-          </div>
+          </motion.div>
         </main>
 
         <section className="w-full gap-5 grid md:grid-cols-2 grid-cols-1">
-          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.5}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">QR Code</h3>
             <p className=" font-medium">Scan to access the URL</p>
 
@@ -151,7 +152,7 @@ const Details = () => {
                   {showMarkGood && (
                     <IoCheckmarkCircleSharp
                       size={20}
-                      className={showMarkGood ? "text-green-500 " : ""}
+                      className={showMarkGood ? "text-white " : ""}
                     />
                   )}
                   {!showMarkGood && (
@@ -193,8 +194,8 @@ const Details = () => {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          </motion.div>
+          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.6}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
             <h3 className="text-2xl font-bold">Pie Chart</h3>
             <p className="font-medium">Breakdown of clicks by source</p>
 
@@ -211,7 +212,7 @@ const Details = () => {
                 </span>
               </span>
             </div>
-          </div>
+          </motion.div>
         </section>
       </section>
     </>

@@ -6,20 +6,27 @@ import UserDashboard from "./components/pages/UserDashboard.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Details from "./components/pages/Details.tsx";
 import ErrorPage from "./components/pages/ErrorPage.tsx";
+import Layout from "./components/Layout/Layout.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/analytics",
-    element: <UserDashboard />,
-  },
-  {
-    path: "/details/:urlCode", // Add this route
-    element: <Details />,
+    children: [
+      {
+      index: true,
+      element: <App />,
+      },
+      {
+      path: "analytics",
+      element: <UserDashboard />,
+      },
+      {
+        path: "/details/:urlCode",
+        element: <Details />,
+      },
+    ],
   },
 ]);
 

@@ -9,6 +9,7 @@ import CustomisUrl from "../CustomisUrl";
 import Modal from "../resuableModal";
 import { parentUserDashboardUrlType } from "../TypesExport";
 import "../Styles.css";
+import { motion } from "framer-motion";
 
 const UserDashboard = () => {
   const [userData, setUserData] = useState<parentUserDashboardUrlType[]>([]);
@@ -122,20 +123,20 @@ const UserDashboard = () => {
           User Dashboard
         </h2>
         <div className="grid grid-cols-2 gap-5 mx-5">
-          <div className="px-5 text-white rounded-md cards_colors_box md:h-[200px] h-[150px] mt-5">
+          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.2}} className="px-5 text-white rounded-md cards_colors_box md:h-[200px] h-[150px] mt-5">
             <p className="md:text-2xl md:font-black font-bold">Total Clicks:</p>
-            <p className=" mt-[30px] md:text-5xl text-center text-3xl md:font-black font-bold items-center">
+            <p className=" mt-[30px] lg:text-6xl md:text-5xl sm:text-4xl text-center text-3xl md:font-black font-bold items-center">
               {sumClicks}
             </p>
-          </div>
-          <div className="px-5 cards_colors_box text-white rounded-md md:h-[200px] h-[150px] mt-5">
+          </motion.div>
+          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.4}} className="px-5 cards_colors_box text-white rounded-md md:h-[200px] h-[150px] mt-5">
             <p className="md:text-2xl md:font-black font-bold">Activities:</p>
-            <p className=" mt-[30px] md:text-5xl text-3xl md:font-black font-bold items-center text-center">
+            <p className=" mt-[30px] lg:text-6xl md:text-5xl sm:text-4xl text-3xl md:font-black font-bold items-center text-center">
               {userData.length}
             </p>
-          </div>
+          </motion.div>
         </div>
-        <div className="w-full mt-5 flex justify-center h-[100vh]">
+        <div className="w-full mt-5 flex justify-center">
           <div className="md:w-[100%] mx-5 w-full h-[55vh] mt-5 overflow-y-scroll">
             {userData.map((url, index) => (
               <UserDashboardUi

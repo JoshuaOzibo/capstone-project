@@ -6,6 +6,8 @@ import { auth } from "../ClientDatabase";
 import ToastMessage, { showToast } from "../toastMessage/ToastMessage";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import "../Styles.css";
+import { CiEdit } from "react-icons/ci";
+import {motion} from 'framer-motion';
 
 const UserDashboardUi = ({
   Clicks,
@@ -72,12 +74,12 @@ const UserDashboardUi = ({
   return (
     <>
       <ToastMessage />
-      <div className="border mb-3 rounded-l-md cards_colors_box text-white sm:w-auto w-[120%] text-balance break-words flex items-center justify-between py-4 px-3">
+      <motion.div initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} transition={{delay: 0.6}} className="border mb-3 rounded-l-md cards_colors_box text-white sm:w-auto w-[120%] text-balance break-words flex items-center justify-between py-4 px-3">
         <div
           onClick={handleeachData}
           className="w-full flex items-center h-[50px]"
         >
-          <span className="md:w-[65%] w-[95%] flex justify-between">
+          <span className="md:w-[60%] w-[95%] flex justify-between">
             <h1 className="font-medium text-sm">{ShortUrl}</h1>
             <p className="hidden md:block font-medium">clicks: {Clicks}</p>
           </span>
@@ -97,7 +99,7 @@ const UserDashboardUi = ({
               onClick={handleCustomiseUrl}
               className="text-[13px] font-medium cursor-pointer"
             >
-              Edit
+              <CiEdit size={22} />
             </span>
             <span onClick={handleDelete} className="cursor-pointer">
               <AiTwotoneDelete />
@@ -105,7 +107,7 @@ const UserDashboardUi = ({
           </p>
           <p className="font-medium">{date}</p>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
