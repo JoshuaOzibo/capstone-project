@@ -40,7 +40,6 @@ const QRcode = ({ shortUrl }: shortUrlType) => {
         setTimeout(() => setShowMarkGood(false), 1000);
       },
       (error) => {
-        console.log("failed to copy", error);
         setShowMarkGood(false);
       }
     );

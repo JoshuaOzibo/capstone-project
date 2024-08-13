@@ -22,7 +22,7 @@ const HeroSection = () => {
           </p>
         </div>
       </div>
-      <div className="absolute flex md:mt-[13rem] mt-[26rem] w-full justify-center items-center z-10">
+      <div className="absolute flex md:mt-[13rem] mt-[28rem] w-full justify-center items-center z-10">
         <div className=" md:mt-[14rem] w-full text-center">
           <Shortener open={open} setOpen={setOpen} />
         </div>

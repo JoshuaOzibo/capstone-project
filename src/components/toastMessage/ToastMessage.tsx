@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const defaultOptions: ToastOptions = {
   position: "bottom-right",
-  autoClose: 2000,
+  autoClose: 1000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -14,7 +14,9 @@ const defaultOptions: ToastOptions = {
 };
 
 const ToastMessage = () => {
-  return <ToastContainer />;
+  return <div className="z-20">
+    <ToastContainer />
+  </div>
 };
 
 export const showToast = (

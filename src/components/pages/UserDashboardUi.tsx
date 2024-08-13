@@ -32,7 +32,7 @@ const UserDashboardUi = ({
     try {
       const idToken = await currentUser.getIdToken();
       const response = await fetch(
-        `http://127.0.0.1:8000/deleteurl/${urlCode}`,
+        `https://swift-short.netlify.app/deleteurl/${urlCode}`,
         {
           method: "DELETE",
           headers: {
@@ -74,7 +74,7 @@ const UserDashboardUi = ({
   return (
     <>
       <ToastMessage />
-      <motion.div initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} transition={{delay: 0.6}} className="border mb-3 rounded-l-md cards_colors_box text-white sm:w-auto w-[120%] text-balance break-words flex items-center justify-between py-4 px-3">
+      <motion.div initial={{opacity: 0, y: 20, z: 2}} whileInView={{opacity: 1, y: 0, z: 1}} transition={{delay: 0.3}} className="border mb-3 z-0 rounded-l-md cards_colors_box text-white sm:w-auto w-[120%] text-balance break-words flex items-center justify-between py-4 px-3">
         <div
           onClick={handleeachData}
           className="w-full flex items-center h-[50px]"

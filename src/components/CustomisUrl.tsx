@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth } from "./ClientDatabase.ts";
-import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
+import { showToast } from "./toastMessage/ToastMessage.tsx";
 import { CustomizeUrlTypes } from "./TypesExport.ts";
 
 const CustomisUrl = ({
@@ -28,7 +28,7 @@ const CustomisUrl = ({
           setLoading(true);
           const idToken = await currentUser.getIdToken();
           const response = await fetch(
-            `http://127.0.0.1:8000/updateurl/${originalCode}`,
+            `https://swift-short.netlify.app/updateurl/${originalCode}`,
             {
               method: "PUT",
               headers: {
@@ -45,6 +45,7 @@ const CustomisUrl = ({
           }
           setLoading(false);
           setShowModal(false);
+
         } catch (error: any) {
           setLoading(false);
           setError(error.message);

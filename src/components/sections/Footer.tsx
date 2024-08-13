@@ -4,8 +4,8 @@ import HeaderLogo from "../../assets/cb857sgqnwslzgtjnfv.svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-muted text-white cards_colors_box border-t-2 py-4 px-[1rem] md:py-4 mt-12">
-      <div className=" sm:flex justify-between pr-[30px]">
+    <footer className=" w-full m-auto mt-[100px] cards_colors_box py-5 text-white">
+      <main className=" grid lg:grid-cols-4 md:text-center md:grid-cols-3 grid-cols-2 justify-between md:gap-10 gap-3 items-center md:mx-10 mx-[1rem] ">
         <div className="flex flex-col items-start gap-4">
           <span className="flex w-full items-center">
             <img
@@ -13,7 +13,7 @@ const Footer = () => {
               src={HeaderLogo}
               alt="HeaderLogo"
             />
-            <span className="text-lg text-white font-bold">URL Shortener</span>
+            <span className="text-lg text-white font-bold">Swift-Short</span>
           </span>
           <p className="text-muted-foreground font-medium">
             Shorten your links and share them with ease.
@@ -25,12 +25,14 @@ const Footer = () => {
           <p className="text-sm font-medium">@joshuamichaelozibo@gmail.com</p>
           <p className="text-sm font-medium">(234) 805-074-7790</p>
         </div>
-      </div>
-      <div className=" lg:w-[94%] md:w-[90%] m-auto mt-2 flex items-center justify-between">
-        <p className="text-sm text-muted-foreground font-medium">
-          &copy; 2024 URL Shortener. All rights reserved.
-        </p>
-        <div className="flex font-medium items-center gap-4">
+
+        <div className="w-full">
+          <p className="text-sm  text-muted-foreground font-medium">
+            &copy; 2024 URL Shortener. All rights reserved.
+          </p>
+        </div>
+
+        <div className="">
           <Link to="" className="text-sm hover:underline">
             Privacy Policy
           </Link>
@@ -38,7 +40,7 @@ const Footer = () => {
             Terms of Service
           </Link>
         </div>
-      </div>
+      </main>
     </footer>
   );
 };

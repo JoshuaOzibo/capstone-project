@@ -27,8 +27,8 @@ const Modal = ({ setOpen, open }: openModalType) => {
                   onClick={() => setIsTrue(true)}
                   className={
                     isTrue
-                      ? "border shadow-md bg-slate-400 w-full py-2 rounded-md"
-                      : "border w-full py-2 rounded-md"
+                      ? "border text-white font-medium shadow-md cards_colors_box w-full py-2 rounded-md"
+                      : "border  font-medium w-full py-2 rounded-md"
                   }
                 >
                   SignUp
@@ -37,8 +37,8 @@ const Modal = ({ setOpen, open }: openModalType) => {
                   onClick={() => setIsTrue(false)}
                   className={
                     isTrue
-                      ? "border w-full py-2 rounded-md"
-                      : "border w-full py-2 bg-slate-400 shadow-md rounded-md"
+                      ? "border font-medium w-full py-2 rounded-md"
+                      : "border text-white font-medium w-full py-2 cards_colors_box shadow-md rounded-md"
                   }
                 >
                   Login

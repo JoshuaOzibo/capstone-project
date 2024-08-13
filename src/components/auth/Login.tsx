@@ -1,8 +1,8 @@
-import { ReactEventHandler, useState } from "react";
+import { useState } from "react";
 import { auth } from "../ClientDatabase.ts";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
-import ToastMessage, { showToast } from "../toastMessage/ToastMessage.tsx";
+import  { showToast } from "../toastMessage/ToastMessage.tsx";
 import {openModalType} from '../TypesExport.ts'
 
 const Login = ({ setOpen }: openModalType) => {
@@ -29,7 +29,6 @@ const Login = ({ setOpen }: openModalType) => {
 
   return (
     <div>
-      <ToastMessage />
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>
         <div className="mb-5">
@@ -50,10 +49,10 @@ const Login = ({ setOpen }: openModalType) => {
         </div>
         <button
           type="submit"
-          className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+          className="mt-3 cards_colors_box text-white  inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
         >
-          <span className="flex items-center">
-            <ArrowRightOnRectangleIcon className="w-6 h-6 text-blue-500" />
+          <span className="flex items-center space-x-2">
+            <ArrowRightOnRectangleIcon className="w-6 h-6" />
             <span>Login</span>
           </span>
         </button>

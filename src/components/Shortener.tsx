@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { auth } from "./ClientDatabase.ts";
-import Modal from "./Modal.tsx";
+import Modal from "./LoginandsignupModal.tsx";
 import DisplayShortUrlResult from "../components/shortUrlResult/DisplayShortUrlResult.tsx";
 import { FadeLoader } from "react-spinners";
 import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
@@ -21,7 +21,7 @@ const Shortener = ({ open, setOpen }: openModalType) => {
         setIsLoading(true);
         const idToken = await auth.currentUser.getIdToken();
         
-        const response = await fetch("http://127.0.0.1:8000/shortenurl", {
+        const response = await fetch(" https://swift-short.netlify.app/shortenurl", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ const Shortener = ({ open, setOpen }: openModalType) => {
                 />
               </p>
             ) : (
-              <p className="mt-3">Shorten URL</p>
+              <p className="mt-3 text-white">Shorten URL</p>
             )}
           </button>
         </div>

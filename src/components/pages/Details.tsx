@@ -22,7 +22,7 @@ const Details = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/details/${urlCode}`
+          `https://swift-short.netlify.app/details/${urlCode}`
         );
         if (!response.ok) {
           throw new Error("Route not found");
@@ -99,7 +99,7 @@ const Details = () => {
     <>
       <p className="pt-5"><Link
         to="/analytics"
-        className="border text-white cards_colors_box rounded-md ml-5 px-16 font-bold py-3 "
+        className="rounded-md cards_colors_box text-white md:px-16 px-14 font-bold md:py-3 py-2 mt-3 ml-4 "
       >
         {"Back"}
       </Link></p>
@@ -200,7 +200,7 @@ const Details = () => {
             <p className="font-medium">Breakdown of clicks by source</p>
 
             <div>
-              <span className="bg-yellow-300 ">
+              <span className=" ">
                 <span className="hidden lg:block">
                   <PiChart size={180} data01={pieData01} />
                 </span>

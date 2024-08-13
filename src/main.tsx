@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Details from "./components/pages/Details.tsx";
 import ErrorPage from "./components/pages/ErrorPage.tsx";
 import Layout from "./components/Layout/Layout.tsx";
-
+import ToastMessage from "./components/toastMessage/ToastMessage.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <div className="relative min-h-screen bg-custom-gradient bg-cover">
     <React.StrictMode>
+      <ToastMessage />
     <RouterProvider router={router} />
   </React.StrictMode>
   </div>

@@ -10,6 +10,7 @@ import Modal from "../resuableModal";
 import { parentUserDashboardUrlType } from "../TypesExport";
 import "../Styles.css";
 import { motion } from "framer-motion";
+import ToastMessage, { showToast } from "../toastMessage/ToastMessage.tsx";
 
 const UserDashboard = () => {
   const [userData, setUserData] = useState<parentUserDashboardUrlType[]>([]);
@@ -67,6 +68,8 @@ const UserDashboard = () => {
 
   const handleDelete = (urlCode: string) => {
     // Remove item from state
+    showToast('Url Deleted!', 'success')
+    console.log('deleted')
     setUserData(userData.filter((item) => item.urlCode !== urlCode));
   };
 
@@ -76,7 +79,7 @@ const UserDashboard = () => {
 
   if (error) {
     return (
-      <div className="text-center mt-10">
+      <div className="text-center h-screen mt-10">
         <p className="text-red-500 font-medium">{error}</p>
         <button
           onClick={() => navigate("/")}
@@ -89,24 +92,25 @@ const UserDashboard = () => {
   }
   if (userData.length === 0) {
     return (
-      <>
-        <button
+      <div className="h-screen">
+        <button  
           onClick={() => navigate("/")}
-          className="cursor-pointer cards_colors_box border border-2xl border-black p-1 px-2 rounded-sm mt-2 ml-2"
+          className="rounded-md cards_colors_box text-white md:px-10 px-5 font-bold py-2 mt-3 ml-4 "
         >
           Back Home
         </button>
         <p className="font-medium md:text-3xl text-2xl text-center mt-[300px]">
           No URLs found.
         </p>
-      </>
+      </div>
     );
   } else {
     return (
-      <section>
+      <section className="h-screen">
+        <ToastMessage />
         <button
           onClick={() => navigate("/")}
-          className="cursor-pointer text-white font-medium cards_colors_box border border-2xl p-1 px-2 rounded-sm mt-2 ml-2"
+          className="rounded-md cards_colors_box text-white md:px-10 px-5 font-bold py-2 mt-3 ml-4"
         >
           Back Home
         </button>
@@ -140,6 +144,7 @@ const UserDashboard = () => {
           <div className="md:w-[100%] mx-5 w-full h-[55vh] mt-5 overflow-y-scroll">
             {userData.map((url, index) => (
               <UserDashboardUi
+              key={index}
                 date={url.date}
                 Clicks={url.clicks}
                 LongUrl={url.originalUrl}

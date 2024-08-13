@@ -4,14 +4,14 @@ import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
 import { signupTypes } from "../TypesExport";
-import ToastMessage, { showToast } from "../toastMessage/ToastMessage.tsx";
+import { showToast } from "../toastMessage/ToastMessage.tsx";
 
 const Signup = ({ setIsTrue }: signupTypes) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  const handleSignUp = async (e: any) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -35,7 +35,7 @@ const Signup = ({ setIsTrue }: signupTypes) => {
   };
   return (
     <div>
-      <ToastMessage />
+ 
       <form onSubmit={handleSignUp}>
         <div>
           <span className="flex gap-5">
@@ -67,10 +67,10 @@ const Signup = ({ setIsTrue }: signupTypes) => {
         </div>
         <button
           type="submit"
-          className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+          className="mt-3 cards_colors_box text-white inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
         >
-          <span className="flex items-center">
-            <UserPlusIcon className="w-6 h-6 text-green-500" />
+          <span className="flex items-center space-x-2">
+            <UserPlusIcon className="w-6 h-6" />
             <span>Signup</span>
           </span>
         </button>
