@@ -4,8 +4,8 @@ import HeaderLogo from "../../assets/cb857sgqnwslzgtjnfv.svg";
 
 const Footer = () => {
   return (
-    <footer className=" w-full m-auto mt-[100px] cards_colors_box py-5 text-white">
-      <main className=" grid lg:grid-cols-4 md:text-center md:grid-cols-3 grid-cols-2 justify-between md:gap-10 gap-3 items-center md:mx-10 mx-[1rem] ">
+    <footer className=" w-full break-words overflow-hidden m-auto mt-[100px] cards_colors_box py-5 text-white">
+      <main className=" grid break-words lg:grid-cols-4 md:text-center md:grid-cols-3 grid-cols-2 justify-between md:gap-10 gap-3 items-center md:mx-10 mx-[1rem] ">
         <div className="flex flex-col items-start gap-4">
           <span className="flex w-full items-center">
             <img
@@ -20,7 +20,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="grid gap-2">
+        <div className="md:grid md:gap space-y-1">
           <h4 className="text-lg font-medium">Contact</h4>
           <p className="text-sm font-medium">@joshuamichaelozibo@gmail.com</p>
           <p className="text-sm font-medium">(234) 805-074-7790</p>

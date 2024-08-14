@@ -71,7 +71,7 @@ const CustomisUrl = ({
                 X
               </p>
             </div>
-            <div className="text-center blue_gradient w-full font-medium">
+            <div className="text-center my-3 blue_gradient w-full font-medium">
               <label>{currentShortUrl}</label>
             </div>
             {showTimeOut &&<p className="text-red-600 font-medium mt-3">{error}</p>}

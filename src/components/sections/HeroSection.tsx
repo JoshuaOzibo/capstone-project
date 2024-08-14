@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Shortener from "../Shortener";
+import Shortener from "./Shortener";
 import Navbar from "./Navbar";
 import "../Styles.css";
 
@@ -7,16 +7,16 @@ const HeroSection = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="relative bg-[#090a15] w-full overflow-hidden">
-      <div className="z-20 absolute w-full">
+      <div className="relative bg-[#090a15] w-full border-b-4 mb-10 border-b-[#151832] overflow-hidden">
+      <div className="z-20 absolute w-full  border-5">
         <Navbar open={open} setOpen={setOpen} />
       </div>
       <div className="z-10 flex justify-center w-full  md:mt-[20rem] mt-[18rem] text-center text-white absolute">
         <div>
-          <h1 className="md:text-4xl lg:text-5xl sm:text-3xl text-2xl font-bold blue_gradient">
+          <h1 className="md:text-4xl -pt-4 pb-3 lg:text-5xl sm:text-3xl text-2xl font-bold blue_gradient">
             Giving superpowers to modern teams
           </h1>
-          <p className="text-center lg:text-2xl md:text-xl mt-2 w-[80%] m-auto font-medium blue_gradient_p">
+          <p className="text-center lg:text-2xl md:text-xl mt-2 w-[93%] m-auto font-medium blue_gradient_p">
             Streamline your links and enhance your team's efficiency with our
             powerful URL shortener.
           </p>

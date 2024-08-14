@@ -31,7 +31,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <div className="relative min-h-screen bg-custom-gradient bg-cover">
+  <div className="relative min-h-screen bg-[#090a15]">
     <React.StrictMode>
       <ToastMessage />
     <RouterProvider router={router} />

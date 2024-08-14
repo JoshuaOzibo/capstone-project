@@ -67,7 +67,7 @@ const Navbar = ({ setOpen }: openModalType) => {
         isScrolled ? "gradient_background " : "bg-transparent py-4"
       }`}
     >
-      <div className="flex font-bold items-center justify-between">
+      <div className="flex font-bold sm:w-full w-[95%] m-auto items-center justify-between">
         <div className=" flex space-x-1 items-center cursor-pointer">
         <img className="md:w-[38px] w-[34px] " src={HeaderLogo} alt="HeaderLogo" />
           <motion.p transition={{delay: 0.5}} className="text-white">Swift-Short</motion.p>

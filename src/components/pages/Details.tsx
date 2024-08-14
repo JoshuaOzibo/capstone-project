@@ -122,11 +122,10 @@ const Details = () => {
             <p className=" font-medium">The generated short URL</p>
 
             <div className="w-full text-center my-4">
-              <p className="font-medium flex space-x-1">
-                <span>
-                  <CiLink size={30} />
-                </span>
-                <span>{data.shortUrl}</span>
+              <p className="font-medium items-center flex md:space-x-1">
+                
+                  <CiLink  size={30} />
+                <p className="md:text-md text-[12px]">{data.shortUrl}</p>
               </p>
             </div>
           </motion.div>

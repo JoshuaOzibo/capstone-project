@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Img from "../../assets/pexels-asadphoto-457882.jpg";
-import qrImg from "../../assets/qrcode.png";
+import Img from "../../assets/Screenshot (40).png";
+import qrImg from "../../assets/Screenshot (42).png";
 import "../Styles.css";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
@@ -16,7 +16,7 @@ const Transform = () => {
     },
     {
       id: 2,
-      h1: "Real-Time Click Tracking",
+      h1: "Real-Time Click Tracking and customizing",
 
       p: "Stay informed with up-to-the-minute analytics. See who’s clicking your links, from where, and when, all in one place. Our platform ensures your links are safe and reliable. Trust in our robust security measures to keep your data protected.",
     },
@@ -38,9 +38,9 @@ const Transform = () => {
   return (
     <>
       <section className="">
-        <div className="w-full py-[40px] text-center px-[2rem]">
+        <div className="w-full mb-10 py-[40px] text-center px-[2rem]">
           <div className="lg:w-[75%] md:w-[90%] w-full m-auto">
-            <h1 className="text-3xl blue_gradient font-bold text-center tracking-tighter md:text-4xl lg:text-5xl">
+            <h1 className="text-2xl blue_gradient font-bold text-center tracking-tighter md:text-4xl lg:text-5xl">
               Transform long, complicated URLs into short, easy-to-share links
               with just one click.
             </h1>

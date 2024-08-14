@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { auth } from "./ClientDatabase.ts";
-import Modal from "./LoginandsignupModal.tsx";
-import DisplayShortUrlResult from "../components/shortUrlResult/DisplayShortUrlResult.tsx";
+import { auth } from "../ClientDatabase.ts";
+import Modal from "../auth/LoginandsignupModal.tsx";
+import DisplayShortUrlResult from "../shortUrlResult/DisplayShortUrlResult.tsx";
 import { FadeLoader } from "react-spinners";
-import ToastMessage, { showToast } from "./toastMessage/ToastMessage.tsx";
-import "./Styles.css";
-import { openModalType } from "./TypesExport.ts";
+import { showToast } from "../toastMessage/ToastMessage.tsx";
+
+import { openModalType } from "../TypesExport.ts";
 
 const Shortener = ({ open, setOpen }: openModalType) => {
   const [shortUrl, setShortUrl] = useState<string | null>("");
@@ -20,21 +20,25 @@ const Shortener = ({ open, setOpen }: openModalType) => {
       try {
         setIsLoading(true);
         const idToken = await auth.currentUser.getIdToken();
-        
-        const response = await fetch(" https://swift-short.netlify.app/shortenurl", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-user-id": idToken,
-          },
-          body: JSON.stringify({ originalUrl }),
-        });
+
+        const response = await fetch(
+          " https://swift-short.netlify.app/shortenurl",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-user-id": idToken,
+            },
+            body: JSON.stringify({ originalUrl }),
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const result = await response.json();
+
         setIsLoading(false);
         setShortUrl(result.shortUrl);
         setShowResultModal(true);
@@ -53,21 +57,20 @@ const Shortener = ({ open, setOpen }: openModalType) => {
 
   return (
     <div>
-      <ToastMessage />
       {open && <Modal setOpen={setOpen} open={open} />}
       <form onSubmit={handleSubmit}>
         <div className="md:flex items-center justify-center block">
           <input
             type="url"
             required
-            className="text-black rounded-sm md:rounded-l-sm p-4 md:my-10 lg:w-[40%] md:h-[50px] md:w-[50%] w-[70%] h-[50px]"
+            className="text-black rounded-sm md:rounded-l-sm p-4 md:my-10 lg:w-[40%] md:h-[50px] md:w-[50%] w-[90%] h-[50px]"
             value={originalUrl}
             onChange={(e) => setOriginalUrl(e.target.value)}
             placeholder="Enter URL to shorten"
           />
           <br className="md:hidden" />
           <button
-            className="md:w-[20%] md:m-0 m-auto flex justify-center relative lg:w-[15%] md:h-[50px] md:mt-0 mt-[20px] md:rounded-r-sm rounded-sm w-[70%] h-[50px] font-bold gradient_background"
+            className="md:w-[20%] md:m-0 m-auto flex justify-center relative lg:w-[15%] md:h-[50px] md:mt-0 mt-[20px] md:rounded-r-sm rounded-sm  w-[90%] h-[50px] font-bold gradient_background"
             type="submit"
           >
             {isLoading ? (

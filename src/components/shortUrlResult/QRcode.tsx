@@ -93,12 +93,12 @@ const QRcode = ({ shortUrl }: shortUrlType) => {
                 )}
               </div>
             </div>
-            <div></div>
+         
             <div className="flex justify-center">
               <div ref={qrRef} className="border-[8px] border-blue-400">
                 <QRCodeCanvas
                   fgColor={changeQrColor}
-                  size={280}
+                  size={270}
                   id="qrcodeId"
                   value={shortUrl}
                 />
