@@ -2,8 +2,8 @@ import { useState } from "react";
 import { auth } from "../ClientDatabase.ts";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
-import  { showToast } from "../toastMessage/ToastMessage.tsx";
-import {openModalType} from '../TypesExport.ts'
+import { showToast } from "../toastMessage/ToastMessage.tsx";
+import { openModalType } from "../TypesExport.ts";
 
 const Login = ({ setOpen }: openModalType) => {
   const [email, setEmail] = useState("");

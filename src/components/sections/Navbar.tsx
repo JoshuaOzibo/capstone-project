@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import "../Styles.css";
 import { openModalType } from "../TypesExport";
 import { onAuthStateChanged } from "firebase/auth";
-import HeaderLogo from '../../assets/cb857sgqnwslzgtjnfv.svg';
+import HeaderLogo from "../../assets/cb857sgqnwslzgtjnfv.svg";
 import { motion } from "framer-motion";
 
 const Navbar = ({ setOpen }: openModalType) => {
@@ -27,7 +27,6 @@ const Navbar = ({ setOpen }: openModalType) => {
           if (userDoc.exists()) {
             const { name } = userDoc.data();
             setNameOfUser(name.name);
-
           } else {
             console.log("No such document!");
           }
@@ -63,72 +62,99 @@ const Navbar = ({ setOpen }: openModalType) => {
   return (
     <>
       <section
-      className={`z-10 w-full fixed transition-all ease-out delay-300 m-auto  py-[1rem] sm:px-[2rem] px-[1rem] ${
-        isScrolled ? "gradient_background " : "bg-transparent py-4"
-      }`}
-    >
-      <div className="flex font-bold sm:w-full w-[95%] m-auto items-center justify-between">
-        <div className=" flex space-x-1 items-center cursor-pointer">
-        <img className="md:w-[38px] w-[34px] " src={HeaderLogo} alt="HeaderLogo" />
-          <motion.p transition={{delay: 0.5}} className="text-white">Swift-Short</motion.p>
-        </div>
+        className={`z-10 w-full fixed transition-all ease-out delay-300 m-auto  py-[1rem] sm:px-[2rem] px-[1rem] ${
+          isScrolled ? "gradient_background " : "bg-transparent py-4"
+        }`}
+      >
+        <div className="flex font-bold sm:w-full w-[95%] m-auto items-center justify-between">
+          <a
+            href="#top"
+            className=" flex space-x-1 items-center cursor-pointer"
+          >
+            <img
+              className="md:w-[38px] w-[34px] "
+              src={HeaderLogo}
+              alt="HeaderLogo"
+            />
+            <motion.p
+              transition={{ delay: 0.5 }}
+              className={
+                isScrolled
+                  ? "text-white sm:text-2xl"
+                  : "blue_gradient sm:text-2xl"
+              }
+            >
+              Swift-Short
+            </motion.p>
+          </a>
 
-        {isLoggedIn && (
-          <ul className="md:flex hidden space-x-5 items-center">
-            <Link to="/analytics" className=" cursor-pointer text-white">
-              Dashboard
-            </Link>
-          </ul>
-        )}
-
-        <div className=" cursor-pointer">
-          {!isLoggedIn && (
-            <p className="text-white" onClick={handleRegister}>
-              Signup/Login
-            </p>
-          )}
           {isLoggedIn && (
-            <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <MenuButton className="inline-flex text-white uppercase w-full justify-center gap-x-1.5 rounded-md hover:bg-blue-500 px-3 py-2 text-sm font-semibold border border-blue-300 ">
-                  My-Profile
-                  <ChevronDownIcon
-                    aria-hidden="true"
-                    className="-mr-1 h-5 text-white"
-                  />
-                </MenuButton>
-              </div>
-
-              <MenuItems
-                transition
-                className="absolute right-0 z-10 mt-6 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-              >
-                <div className="py-1">
-                  <MenuItem>
-                    <h2 className="block text-center gradient_background  uppercase px-4 py-2 -mt-2 rounded-t-md text-sm text-black-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
-                      {nameOfUser}
-                    </h2>
-                  </MenuItem>
-                  <MenuItem>
-                    <Link
-                      to="/analytics"
-                      className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
-                    >
-                      Dashboard
-                    </Link>
-                  </MenuItem>
-                  <MenuItem>
-                    <a className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
-                      <SignOut />
-                    </a>
-                  </MenuItem>
-                </div>
-              </MenuItems>
-            </Menu>
+            <ul className="md:flex hidden space-x-5 items-center">
+              <Link to="/analytics" className=" cursor-pointer text-white">
+                Dashboard
+              </Link>
+              <Link to="/faq" className=" cursor-pointer text-white">
+                Faq
+              </Link>
+            </ul>
           )}
+
+          <div className=" cursor-pointer">
+            {!isLoggedIn && (
+              <p className="text-white" onClick={handleRegister}>
+                Signup/Login
+              </p>
+            )}
+            {isLoggedIn && (
+              <Menu as="div" className="relative inline-block text-left">
+                <div>
+                  <MenuButton className="inline-flex text-white uppercase w-full justify-center gap-x-1.5 rounded-md hover:bg-blue-500 px-3 py-2 text-sm font-semibold border border-blue-300 ">
+                    My-Profile
+                    <ChevronDownIcon
+                      aria-hidden="true"
+                      className="-mr-1 h-5 text-white"
+                    />
+                  </MenuButton>
+                </div>
+
+                <MenuItems
+                  transition
+                  className="absolute right-0 z-10 mt-6 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                >
+                  <div className="py-1">
+                    <MenuItem>
+                      <h2 className="block text-center text-white gradient_background  uppercase px-4 py-2 -mt-2 rounded-t-md text-sm text-black-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
+                        {nameOfUser}
+                      </h2>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/analytics"
+                        className="block px-4 blue_gradient py-2 text-sm data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                      >
+                        Dashboard
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <Link
+                        to="/faq"
+                        className="block px-4 blue_gradient py-2 text-sm  data-[focus]:bg-gray-100 data-[focus]:text-gray-900"
+                      >
+                        Faq
+                      </Link>
+                    </MenuItem>
+                    <MenuItem>
+                      <a className="block px-4 py-2 text-sm text-black data-[focus]:bg-gray-100 data-[focus]:text-gray-900">
+                        <SignOut />
+                      </a>
+                    </MenuItem>
+                  </div>
+                </MenuItems>
+              </Menu>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 };

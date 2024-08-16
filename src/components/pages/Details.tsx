@@ -9,7 +9,7 @@ import DetailsPageSkeleton from "../skeletonLoading/DetailsPageSkeleton";
 import "../Styles.css";
 import { CiLink } from "react-icons/ci";
 import { detailsdDatatypeItem } from "../TypesExport";
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
 const Details = () => {
   const { urlCode } = useParams();
@@ -97,18 +97,25 @@ const Details = () => {
 
   return (
     <>
-      <p className="pt-5"><Link
-        to="/analytics"
-        className="rounded-md cards_colors_box text-white md:px-16 px-14 font-bold md:py-3 py-2 mt-3 ml-4 "
-      >
-        {"Back"}
-      </Link></p>
+      <p className="pt-5">
+        <Link
+          to="/analytics"
+          className="rounded-md cards_colors_box text-white md:px-16 px-14 font-bold md:py-3 py-2 mt-3 ml-4 "
+        >
+          {"Back"}
+        </Link>
+      </p>
       <section className="px-5">
         <p className="text-center blue_gradient font-bold md:text-4xl text-2xl mt-4">
           User Analytics
         </p>
         <main className="w-full grid gap-5 my-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5">
-          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.2}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="border-2 text-white cards_colors_box p-5 rounded-lg"
+          >
             <h3 className="text-2xl font-bold">Clicks</h3>
             <p className=" font-medium">Total clicks on the URL</p>
 
@@ -117,20 +124,29 @@ const Details = () => {
             </div>
           </motion.div>
 
-          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.3}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="border-2 text-white cards_colors_box p-5 rounded-lg"
+          >
             <h3 className="text-2xl font-bold">New URL</h3>
             <p className=" font-medium">The generated short URL</p>
 
             <div className="w-full text-center my-4">
               <p className="font-medium items-center flex md:space-x-1">
-                
-                  <CiLink  size={30} />
+                <CiLink size={30} />
                 <p className="md:text-md text-[12px]">{data.shortUrl}</p>
               </p>
             </div>
           </motion.div>
 
-          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.4}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="border-2 text-white cards_colors_box p-5 rounded-lg"
+          >
             <h3 className="text-2xl font-bold">Date</h3>
             <p className=" font-medium">When the URL was generated</p>
 
@@ -141,7 +157,12 @@ const Details = () => {
         </main>
 
         <section className="w-full gap-5 grid md:grid-cols-2 grid-cols-1">
-          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.5}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="border-2 text-white cards_colors_box p-5 rounded-lg"
+          >
             <h3 className="text-2xl font-bold">QR Code</h3>
             <p className=" font-medium">Scan to access the URL</p>
 
@@ -194,7 +215,12 @@ const Details = () => {
               </div>
             </div>
           </motion.div>
-          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.6}} className="border-2 text-white cards_colors_box p-5 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="border-2 text-white cards_colors_box p-5 rounded-lg"
+          >
             <h3 className="text-2xl font-bold">Pie Chart</h3>
             <p className="font-medium">Breakdown of clicks by source</p>
 

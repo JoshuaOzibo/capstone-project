@@ -3,7 +3,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { TbCopy } from "react-icons/tb";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
-
+import { showToast } from "../toastMessage/ToastMessage";
 interface shortUrlType {
   shortUrl: string;
 }
@@ -37,7 +37,7 @@ const QRcode = ({ shortUrl }: shortUrlType) => {
 
     navigator.clipboard.writeText(ShortUrl).then(
       () => {
-        setTimeout(() => setShowMarkGood(false), 1000);
+        setTimeout(() => setShowMarkGood(false), 2000);
       },
       (error) => {
         setShowMarkGood(false);
@@ -93,7 +93,7 @@ const QRcode = ({ shortUrl }: shortUrlType) => {
                 )}
               </div>
             </div>
-         
+
             <div className="flex justify-center">
               <div ref={qrRef} className="border-[8px] border-blue-400">
                 <QRCodeCanvas

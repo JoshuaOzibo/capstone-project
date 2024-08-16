@@ -15,8 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "types": ["jest", "node"]
   },
-  "include": ["src", "serverSide/Server.ts", "serverSide/firebaseConfigg.ts", "src/components/sections/.tsx"],
+  "include": ["src", "jest.setup.ts"],
   "exclude": ["node_modules"]
 }

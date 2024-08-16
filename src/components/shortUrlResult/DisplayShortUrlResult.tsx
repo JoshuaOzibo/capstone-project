@@ -23,10 +23,19 @@ const DisplayShortUrlResult = ({
           </span>
         </p>
         <span className=" flex justify-center  cards_colors_H text-center md:text-xl text-lg font-bold m-auto w-full">
-          <span><CiLink color="blue" size={30} /></span>
-          <span><a className="text-sm md:text-md" href={shortUrl} target="_blank" rel="noopener noreferrer">
-            {shortUrl}
-          </a></span>
+          <span>
+            <CiLink color="blue" size={30} />
+          </span>
+          <span>
+            <a
+              className="text-sm md:text-md"
+              href={shortUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {shortUrl}
+            </a>
+          </span>
         </span>
 
         <QRcodeComponent shortUrl={shortUrl} />

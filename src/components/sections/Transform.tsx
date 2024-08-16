@@ -55,11 +55,26 @@ const Transform = () => {
                   className="border cards_colors_box rounded-md hover:bg-sky-100 transition-all ease-out delay-150 p-2"
                   key={item.id}
                 >
-                  <div onClick={() => setChangeIndex(index)} className="flex items-center cursor-pointer justify-between">
-                  <h1 className="font-bold text-lg text-white mb-1 blue_gradient">{item.h1}</h1>
-                  {changeIndex === index ? <CiCircleMinus color="white" size={25} />: <CiCirclePlus color="white" size={25} />}
+                  <div
+                    onClick={() =>
+                      setChangeIndex(
+                        changeIndex === index ? changeIndex : index
+                      )
+                    }
+                    className="flex items-center cursor-pointer justify-between"
+                  >
+                    <h1 className="font-bold text-lg text-white mb-1 blue_gradient">
+                      {item.h1}
+                    </h1>
+                    {changeIndex === index ? (
+                      <CiCircleMinus color="white" size={25} />
+                    ) : (
+                      <CiCirclePlus color="white" size={25} />
+                    )}
                   </div>
-                  {changeIndex === index ? <p className="text-white w-[95%] font-medium">{item.p}</p>: ""}
+                  {changeIndex === index && (
+                    <p className="text-white w-[95%] font-medium">{item.p}</p>
+                  )}
                 </div>
               ))}
             </div>

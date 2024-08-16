@@ -21,9 +21,9 @@ const CustomisUrl = ({
     if (currentUser) {
       if (errorCode) {
         setError('input must not include "/" ');
-        setShowTimeout(true)
+        setShowTimeout(true);
       } else {
-        setShowTimeout(false)
+        setShowTimeout(false);
         try {
           setLoading(true);
           const idToken = await currentUser.getIdToken();
@@ -43,11 +43,12 @@ const CustomisUrl = ({
             const result = await response.json();
             throw new Error(result.error);
           }
+          showToast("url updated!!", "success");
           setLoading(false);
           setShowModal(false);
-
         } catch (error: any) {
           setLoading(false);
+          showToast("error updating url", "error");
           setError(error.message);
         }
       }
@@ -74,7 +75,9 @@ const CustomisUrl = ({
             <div className="text-center my-3 blue_gradient w-full font-medium">
               <label>{currentShortUrl}</label>
             </div>
-            {showTimeOut &&<p className="text-red-600 font-medium mt-3">{error}</p>}
+            {showTimeOut && (
+              <p className="text-red-600 font-medium mt-3">{error}</p>
+            )}
             <div>
               <input
                 type="text"

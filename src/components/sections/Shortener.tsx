@@ -21,6 +21,7 @@ const Shortener = ({ open, setOpen }: openModalType) => {
         setIsLoading(true);
         const idToken = await auth.currentUser.getIdToken();
 
+        //routing to the backend server
         const response = await fetch(
           " https://swift-short.netlify.app/shortenurl",
           {

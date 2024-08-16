@@ -2,7 +2,6 @@ import "../Styles.css";
 
 const PowerfulFeatures = () => {
   return (
-  
     <section className=" my-[45px] mx-[1rem]">
       <div className="">
         <h2 className="text-2xl font-bold text-center blue_gradient tracking-tighter md:text-4xl lg:text-5xl">
@@ -58,7 +57,9 @@ const PowerfulFeatures = () => {
               </p>
             </div>
             <div className=" cards_colors_box rounded-lg text-center py-10 px-5">
-              <h3 className="md:text-lg text-base font-bold text-white">Branded QR Codes</h3>
+              <h3 className="md:text-lg text-base font-bold text-white">
+                Branded QR Codes
+              </h3>
               <p className="text-sm text-white text-muted-foreground">
                 Customize the appearance of your QR codes with your logo and
                 brand colors.

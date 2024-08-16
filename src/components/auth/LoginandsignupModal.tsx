@@ -8,16 +8,15 @@ import { openModalType } from "../TypesExport";
 const Modal = ({ setOpen, open }: openModalType) => {
   const [isTrue, setIsTrue] = useState<boolean>(true);
 
-  let close = setOpen
+  let close = setOpen;
   return (
     <Dialog open={open} onClose={() => setOpen} className="relative z-10">
       <DialogBackdrop
         transition
         className="fixed inset-0 bg-black bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
       />
-   
+
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-      
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <DialogPanel
             transition
@@ -25,7 +24,12 @@ const Modal = ({ setOpen, open }: openModalType) => {
           >
             <div className="bg-white transition-all px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
               <div className="flex w-full justify-end">
-                <h2 onClick={() => setOpen(false)} className="border cursor-pointer font-bold text-2xl mb-5 px-4 rounded-md py-1">X</h2>
+                <h2
+                  onClick={() => setOpen(false)}
+                  className="border text-white cards_colors_box cursor-pointer font-bold text-2xl mb-5 px-4 rounded-md py-1"
+                >
+                  X
+                </h2>
               </div>
               <span className=" w-full mb-5  space-x-5 bg-gray-100  flex items-center justify-center">
                 <button
@@ -50,7 +54,7 @@ const Modal = ({ setOpen, open }: openModalType) => {
                 </button>
               </span>
               <div>
-                {isTrue && <Signup setIsTrue={setIsTrue} />}
+                {isTrue && <Signup setOpen={setOpen} setIsTrue={setIsTrue} />}
                 {!isTrue && <Login setOpen={setOpen} />}
               </div>
             </div>

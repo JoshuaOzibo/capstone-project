@@ -14,9 +14,11 @@ const defaultOptions: ToastOptions = {
 };
 
 const ToastMessage = () => {
-  return <div className="z-20">
-    <ToastContainer />
-  </div>
+  return (
+    <div className="z-20">
+      <ToastContainer />
+    </div>
+  );
 };
 
 export const showToast = (

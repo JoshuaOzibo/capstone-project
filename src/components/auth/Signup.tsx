@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { auth, db } from "../ClientDatabase";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
 import { signupTypes } from "../TypesExport";
 import { showToast } from "../toastMessage/ToastMessage.tsx";
 
-const Signup = ({ setIsTrue }: signupTypes) => {
+const Signup = ({ setIsTrue, setOpen }: signupTypes) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -26,8 +26,9 @@ const Signup = ({ setIsTrue }: signupTypes) => {
         id: user.uid,
         name: { name },
       });
-      await signOut(auth);
+
       setIsTrue(false);
+      setOpen(false);
       showToast("User signed up scuuessful", "success");
     } catch (error: any) {
       showToast("user already exist", "error");
@@ -35,7 +36,6 @@ const Signup = ({ setIsTrue }: signupTypes) => {
   };
   return (
     <div>
- 
       <form onSubmit={handleSignUp}>
         <div>
           <span className="flex gap-5">

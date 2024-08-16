@@ -1,12 +1,19 @@
-import type { Config } from "jest";
+import type { Config } from 'jest';
+
 
 const config: Config = {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleNameMapper: {
+    '^firebase/auth$': '<rootDir>/__mocks__/firebase/auth.ts',
+    '\\.(css|less)$': '<rootDir>/__mocks__/styleMock.ts',
+    '^firebase/firestore$': '<rootDir>/__mocks__/firebase/firestore.ts',
+  },
 
-  preset: "ts-jest",
-  testEnvironment: "jest-environment-jsdom",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
+    '^.+\\.(ts|tsx)$': 'ts-jest',
   },
 };
 

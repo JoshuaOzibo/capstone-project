@@ -3,11 +3,11 @@ import { userDashboard } from "../TypesExport";
 import { TbCopy } from "react-icons/tb";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { auth } from "../ClientDatabase";
-import  { showToast } from "../toastMessage/ToastMessage";
+import { showToast } from "../toastMessage/ToastMessage";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import "../Styles.css";
 import { CiEdit } from "react-icons/ci";
-import {motion} from 'framer-motion';
+import { motion } from "framer-motion";
 
 const UserDashboardUi = ({
   Clicks,
@@ -43,7 +43,6 @@ const UserDashboardUi = ({
       );
 
       if (response.ok) {
-        showToast("successful deleted", "success");
         onDelete();
       } else {
         showToast("delete error", "error");
@@ -64,7 +63,7 @@ const UserDashboardUi = ({
 
     navigator.clipboard.writeText(ShortUrl).then(
       () => {
-        setTimeout(() => setShowMarkGood(false), 700);
+        setTimeout(() => setShowMarkGood(false), 2000);
       },
       (error) => {
         setShowMarkGood(false);
@@ -73,7 +72,12 @@ const UserDashboardUi = ({
   };
   return (
     <>
-      <motion.div initial={{opacity: 0, y: 20, z: 2}} whileInView={{opacity: 1, y: 0, z: 1}} transition={{delay: 0.3}} className="border mb-3 z-0 rounded-l-md cards_colors_box text-white sm:w-auto w-[120%] text-balance break-words flex items-center justify-between py-4 px-3">
+      <motion.div
+        initial={{ opacity: 0, y: 20, z: 2 }}
+        whileInView={{ opacity: 1, y: 0, z: 1 }}
+        transition={{ delay: 0.3 }}
+        className="border mb-3 z-0 rounded-l-md cards_colors_box text-white sm:w-auto w-[120%] text-balance break-words flex items-center justify-between py-4 px-3"
+      >
         <div
           onClick={handleeachData}
           className="w-full flex items-center h-[50px]"

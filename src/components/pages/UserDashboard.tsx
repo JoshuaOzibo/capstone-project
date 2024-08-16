@@ -16,7 +16,8 @@ const UserDashboard = () => {
   const [userData, setUserData] = useState<parentUserDashboardUrlType[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [originalCustomiseValue, setOriginalCustomiseValue] = useState<string>("");
+  const [originalCustomiseValue, setOriginalCustomiseValue] =
+    useState<string>("");
   const [customisableLongUrl, setCustomisableLongUrl] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -68,8 +69,8 @@ const UserDashboard = () => {
 
   const handleDelete = (urlCode: string) => {
     // Remove item from state
-    showToast('Url Deleted!', 'success')
-    console.log('deleted')
+    showToast("Url Deleted!", "success");
+    console.log("deleted");
     setUserData(userData.filter((item) => item.urlCode !== urlCode));
   };
 
@@ -93,7 +94,7 @@ const UserDashboard = () => {
   if (userData.length === 0) {
     return (
       <div className="h-screen">
-        <button  
+        <button
           onClick={() => navigate("/")}
           className="rounded-md cards_colors_box text-white md:px-10 px-5 font-bold py-2 mt-3 ml-4 "
         >
@@ -127,13 +128,23 @@ const UserDashboard = () => {
           User Dashboard
         </h2>
         <div className="grid grid-cols-2 gap-5 mx-5">
-          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.2}} className="px-5 text-white rounded-md cards_colors_box md:h-[200px] h-[150px] mt-5">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="px-5 text-white rounded-md cards_colors_box md:h-[200px] h-[150px] mt-5"
+          >
             <p className="md:text-2xl md:font-black font-bold">Total Clicks:</p>
             <p className=" mt-[30px] lg:text-6xl md:text-5xl sm:text-4xl text-center text-3xl md:font-black font-bold items-center">
               {sumClicks}
             </p>
           </motion.div>
-          <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{delay: 0.4}} className="px-5 cards_colors_box text-white rounded-md md:h-[200px] h-[150px] mt-5">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="px-5 cards_colors_box text-white rounded-md md:h-[200px] h-[150px] mt-5"
+          >
             <p className="md:text-2xl md:font-black font-bold">Activities:</p>
             <p className=" mt-[30px] lg:text-6xl md:text-5xl sm:text-4xl text-3xl md:font-black font-bold items-center text-center">
               {userData.length}
@@ -144,7 +155,7 @@ const UserDashboard = () => {
           <div className="md:w-[100%] mx-5 w-full h-[55vh] mt-5 overflow-y-scroll">
             {userData.map((url, index) => (
               <UserDashboardUi
-              key={index}
+                key={index}
                 date={url.date}
                 Clicks={url.clicks}
                 LongUrl={url.originalUrl}

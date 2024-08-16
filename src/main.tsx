@@ -8,6 +8,8 @@ import Details from "./components/pages/Details.tsx";
 import ErrorPage from "./components/pages/ErrorPage.tsx";
 import Layout from "./components/Layout/Layout.tsx";
 import ToastMessage from "./components/toastMessage/ToastMessage.tsx";
+import Faq from './components/pages/Faq.tsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,15 +25,20 @@ const router = createBrowserRouter([
       element: <UserDashboard />,
       },
       {
-        path: "/details/:urlCode",
+        path: "details/:urlCode",
         element: <Details />,
       },
+      {
+        path: "faq",
+        element: <Faq />,
+      },
+     
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <div className="relative min-h-screen bg-[#090a15]">
+  <div className="relative scroll-smooth min-h-screen bg-[#090a15]">
     <React.StrictMode>
       <ToastMessage />
     <RouterProvider router={router} />

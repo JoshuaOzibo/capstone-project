@@ -1,6 +1,7 @@
 export interface signupTypes {
   setIsTrue: React.Dispatch<React.SetStateAction<boolean>>;
   isTrue?: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export type openModalType = {
