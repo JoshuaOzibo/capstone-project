@@ -23,7 +23,7 @@ const Shortener = ({ open, setOpen }: openModalType) => {
 
         //routing to the backend server
         const response = await fetch(
-          " https://swift-short.netlify.app/shortenurl",
+          " https://swift-so.netlify.app/shortenurl",
           {
             method: "POST",
             headers: {
@@ -36,6 +36,7 @@ const Shortener = ({ open, setOpen }: openModalType) => {
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
+
         }
 
         const result = await response.json();

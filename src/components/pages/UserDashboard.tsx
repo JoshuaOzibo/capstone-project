@@ -100,7 +100,7 @@ const UserDashboard = () => {
         >
           Back Home
         </button>
-        <p className="font-medium md:text-3xl text-2xl text-center mt-[300px]">
+        <p className="font-medium blue_gradient md:text-3xl text-2xl text-center mt-[300px]">
           No URLs found.
         </p>
       </div>

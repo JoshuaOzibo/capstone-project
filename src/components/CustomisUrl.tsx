@@ -28,7 +28,7 @@ const CustomisUrl = ({
           setLoading(true);
           const idToken = await currentUser.getIdToken();
           const response = await fetch(
-            `https://swift-short.netlify.app/updateurl/${originalCode}`,
+            `https://swift-so.netlify.app/updateurl/${originalCode}`,
             {
               method: "PUT",
               headers: {

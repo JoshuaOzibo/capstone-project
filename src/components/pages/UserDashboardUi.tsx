@@ -32,7 +32,7 @@ const UserDashboardUi = ({
     try {
       const idToken = await currentUser.getIdToken();
       const response = await fetch(
-        `https://swift-short.netlify.app/deleteurl/${urlCode}`,
+        ` https://swift-so.netlify.app/deleteurl/${urlCode}`,
         {
           method: "DELETE",
           headers: {
@@ -80,7 +80,7 @@ const UserDashboardUi = ({
       >
         <div
           onClick={handleeachData}
-          className="w-full flex items-center h-[50px]"
+          className="w-full flex cursor-pointer items-center h-[50px]"
         >
           <span className="md:w-[60%] w-[95%] flex justify-between">
             <h1 className="font-medium text-sm">{ShortUrl}</h1>

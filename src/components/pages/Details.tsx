@@ -22,7 +22,7 @@ const Details = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://swift-short.netlify.app/details/${urlCode}`
+          `https://swift-so.netlify.app/details/${urlCode}`
         );
         if (!response.ok) {
           throw new Error("Route not found");
